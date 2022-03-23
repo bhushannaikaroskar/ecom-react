@@ -1,13 +1,436 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+@import url(https://grand-ui.netlify.app/components/components.css);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root {
+    font-size: 62.5%;
+    --COLOR-SHADOW-4: #1b1b1b9d;
+    --COLOR-SIDEBAR-BG: #f4f4f4;
+}
+
+html {
+    scroll-behavior: smooth;
+    color: var(--OFF-BLACK);
+}
+
+body {
+    background-color: var(--COLOR-SHADOW-PRIMARY-50);
+}
+
+html[data-theme="dark"] body {
+    background-color: var(--OFF-WHITE);
+    --WHITE: #111111;
+    --COLOR-SIDEBAR-BG: #232323;
+}
+
+html[data-theme="dark"] .auth-container {
+    box-shadow: 0 5px 1rem 0px var(--OFF-WHITE);
+}
+
+/* LANDING PAGE */
+
+.nav {
+    display: flex;
+}
+
+.box-shadow-100 {
+    box-shadow: 0 3px 1rem -2px var(--COLOR-SHADOW-PRIMARY-50);
+}
+
+/* DOCUMENTATION */
+
+.grand-body {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        " navbar navbar"
+        " main main"
+        "footer footer";
+    background-color: var(--COLOR-SHADOW-PRIMARY-50);
+    min-height: 100vh;
+    max-height: 100vh;
+}
+
+.grand-nav {
+    grid-area: navbar;
+    z-index: 2;
+}
+
+.grand-sidebar {
+    grid-area: sidebar;
+    overflow-y: scroll;
+}
+
+.grand-sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+.grand-main {
+    grid-area: main;
+    padding: 2rem;
+}
+
+.grand-footer {
+    grid-area: footer;
+    background-color: var(--COLOR-SHADOW-PRIMARY-400);
+    padding: 2rem;
+    color: var(--OFF-BLACK);
+}
+
+html[data-theme="dark"] .grand-footer {
+    background-color: var(--COLOR-SHADOW-PRIMARY-400);
+}
+
+::-webkit-scrollbar {
+    width: 0.6rem;
+    height: 0.6rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--PRIMARY-400);
+    border-radius: 5rem;
+}
+
+::selection {
+    color: var(--WHITE);
+    background-color: var(--PRIMARY-400);
+}
+
+/* Category section and carousel */
+
+.category {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.carousel {
+    height: 65vh;
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.trending {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1rem 0;
+}
+
+/* CARDS */
+
+.img-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+
+    width: 100%;
+    height: 20rem;
+    max-width: 40rem;
+    min-width: 25rem;
+    flex-basis: 35rem;
+    border-radius: 1rem;
+
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease-in;
+}
+
+.img-card:hover {
+    transform: scale(1.03);
+}
+
+.card-overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+
+    top: 0;
+    height: 100%;
+    width: 100%;
+    padding: 2rem;
+
+    background-color: var(--COLOR-SHADOW-4);
+    color: var(--COLOR-TEXT-WHITE);
+    backdrop-filter: blur(1px);
+    transition: backdrop-filter 0.7s ease;
+}
+
+.card-overlay:hover {
+    background-color: var(--COLOR-SHADOW-3);
+}
+
+/* GRID FOR PRODUCT DISPLAY */
+
+.grid-products {
+    display: grid;
+    grid-template-columns: 25rem 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "navbar navbar"
+        "sidebar main"
+        "footer footer";
+}
+
+/* PRODUCT LIST DISPLAY */
+
+.products-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+/* PRODUCT FILTER */
+
+.grand-filter {
+    background-color: var(--WHITE);
+    padding: 0 2rem;
+}
+
+.grand-filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.sidebar-hidden {
+    display: flex;
+}
+
+/* CUSTOM SLIDER */
+
+.grand-slider-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.slider-range {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+}
+
+.grand-slider {
+    display: flex;
+    align-items: center;
+    appearance: none;
+    background-color: var(--PRIMARY-50);
+    height: 8px;
+    border-radius: 5rem;
+}
+
+.grand-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 5rem;
+    background-color: var(--PRIMARY-400);
+}
+
+/* ----------------CART------------------------- */
+
+/* ADD THIS VALUE TO UTILITY CLASS LATER */
+.width-45 {
+    width: 45rem;
+}
+
+.cart-wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.quantity-wrapper {
+    display: flex;
+    gap: 2rem;
+}
+
+.quantity-cta-wrapper {
+    display: flex;
+    gap: 1rem;
+}
+
+.quantity-display {
+    background-color: var(--OFF-WHITE);
+    padding: 2px 8px;
+    border-radius: 3px;
+}
+
+.button-round {
+    border: 1px solid var(--LIGHT-GREY);
+    padding: 3px;
+}
+
+.order-checkout {
+    padding: 3rem;
+    background-color: var(--WHITE);
+    border-radius: 1rem;
+    min-width: 30rem;
+    border: 1px solid var(--LIGHT-GREY);
+    margin: 0 2rem;
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.coupon {
+    text-transform: uppercase;
+}
+
+.margin-2 {
+    margin: 2rem 0;
+}
+
+/* ------------------  WISHLIST  --------------------- */
+
+.wishlist-header {
+    color: var(--OFF-BLACK);
+    text-align: center;
+    margin: 2rem 0 3rem;
+}
+
+.wishlist-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin: auto;
+    max-width: 120rem;
+    width: 100%;
+}
+
+/* -------------------  AUTHENTICATION  ----------------- */
+
+/* LATER PUT THIS IN UTILITY CLASS */
+.font-black {
+    color: var(--OFF-BLACK);
+}
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-grow: 0;
+
+    max-width: 45rem;
+    width: 100%;
+    padding: 4rem 5rem;
+    background-color: var(--WHITE);
+    border-radius: 1rem;
+
+    box-shadow: 0 5px 1rem 0px var(--LIGHT-GREY);
+}
+
+.button-link {
+    color: var(--PRIMARY-400);
+    font-size: 1.4rem;
+}
+
+/* LOGOUT MODAL */
+
+.account-modal {
+    position: absolute;
+    right: 1.8rem;
+    top: 3.8rem;
+    width: 13rem;
+    border-radius: 5px;
+    padding: 1rem 2rem;
+
+    display: none;
+    background-color: var(--WHITE);
+    border: 1px solid var(--WHITE);
+    box-shadow: 0 1px 4px 0 var(--OFF-WHITE);
+}
+
+.account-modal::before {
+    content: "";
+    position: absolute;
+    top: -1.6rem;
+    right: 0rem;
+    border-width: 1.5rem;
+    border-style: solid;
+    border-color: transparent var(--WHITE) transparent transparent;
+}
+
+.account:hover .account-modal {
+    display: block;
+}
+
+/* RESPONSIVE CSS */
+
+@media only screen and (max-width: 770px) {
+    :root {
+        font-size: 56.25%;
+    }
+
+    .grid-products {
+        grid-template-areas:
+            "navbar navbar"
+            "main main"
+            "footer footer";
+    }
+
+    .cart-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .cart-wrapper .order-checkout {
+        width: 100%;
+        max-width: 45rem;
+    }
+
+    .navbar-responsive .nav-items .btn {
+        display: block;
+    }
+
+    .grand-filter {
+        display: block;
+        position: absolute;
+        height: calc(100% - 6rem);
+        width: auto;
+        top: 6rem;
+        right: 0;
+        z-index: 5;
+        background-color: var(--COLOR-SIDEBAR-BG);
+    }
+
+    .grid-products .navbar-responsive .nav-items .btn {
+        display: none;
+    }
+
+    .grid-products .navbar-responsive .nav-items .nav-hamburger {
+        display: block;
+    }
+
+    .sidebar-hidden {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    :root {
+        font-size: 50%;
+    }
 }
