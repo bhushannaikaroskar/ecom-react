@@ -1,4 +1,4 @@
-import {FeaturedProduct1,FeaturedProduct2,FeaturedProduct3,FeaturedProduct4} from "../../assets"
+import {Product1,Product2,Product3,Product4} from "../../assets"
 
 const featuredData = [
     {
@@ -6,7 +6,7 @@ const featuredData = [
         title: "Chess Pieces",
         price: { newPrice: 1200, oldPrice: 1400 },
         description: "Complete set of 32 chess pieces, Meet all tournament standard.",
-        imageSrc:FeaturedProduct3,
+        imageSrc:Product3,
         category:"Pieces",
         rating:4
     },
@@ -15,7 +15,7 @@ const featuredData = [
         title: "Wooden Board",
         price: { newPrice: 2499, oldPrice: 2999 },
         description: "Handcrafted by artisans of India",
-        imageSrc:FeaturedProduct1,
+        imageSrc:Product1,
         category:"board",
         rating:4.3
     },
@@ -24,7 +24,7 @@ const featuredData = [
         title: "Magnetic Board ",
         price: { newPrice: 900, oldPrice: 999 },
         description: "Specially designed Magnetic board. special edition travel chess set",
-        imageSrc:FeaturedProduct4,
+        imageSrc:Product4,
         category:"board",
         rating:4.6
     },
@@ -33,7 +33,7 @@ const featuredData = [
         title: "Analog Clock",
         price: { newPrice: 500, oldPrice: 600 },
         description: "Chess Clock has many timer rules and under each rule you can select a unique program that is suited to your game.",
-        imageSrc:FeaturedProduct2,
+        imageSrc:Product2,
         category:"clock",
         rating:4
     },

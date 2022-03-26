@@ -32,7 +32,7 @@ export default function HomePage() {
                         className="btn btn-primary fw-700 p-2 p-y-1 font-x-large"
                         to="/product"
                     >
-                        Shop Now{" "}
+                        Shop Now
                     </NavLink>
                 </div>
             </div>
