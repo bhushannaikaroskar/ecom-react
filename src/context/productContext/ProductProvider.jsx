@@ -1,4 +1,6 @@
-import React, { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
+import {reducer} from "../../reducers/product-reducer"
+import { productData} from "../../data"
 
 const ProductContext = createContext();
 
@@ -10,7 +12,7 @@ const initialState = {
     category:[]
 };
 
-const filterData = (stateObj, data) => {
+const useFilterData = (stateObj, data) => {
     let newData = [...data];
 
     if (stateObj.rating !== 0) {
@@ -42,33 +44,17 @@ const filterData = (stateObj, data) => {
     return newData;
 };
 
-const reducer = (state, action) => {
-    switch (action.type) {
-        case "SORT":
-            return { ...state, sort: action.payload };
-        case "RATING":
-            return { ...state, rating: action.payload };
-        case "MAX_PRICE":
-            console.log(action.payload)
-            return { ...state, maxPrice: action.payload };
-        case "CATEGORY":
-            return state.category.includes(action.payload)
-                ? {...state,category: [...state.category.filter((c) => c !== action.payload)]}
-                : { ...state, category: [...state.category, action.payload] };
-        default:
-            return state;
-    }
-};
 
 export default function FilterProvider({ children }) {
     const [state, dispatch] = useReducer(reducer, initialState);
 
+    const filteredData = useFilterData(state,productData)
+
     return (
-        <ProductContext.Provider value={{ state, dispatch }}>
+        <ProductContext.Provider value={{ state, dispatch,filteredData }}>
             {children}
         </ProductContext.Provider>
     );
 }
 
 export const useProductContext = () => useContext(ProductContext);
-export { filterData };

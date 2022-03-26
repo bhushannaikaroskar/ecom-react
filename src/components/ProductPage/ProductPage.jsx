@@ -6,7 +6,7 @@ import ProductFilters from "./ProductFilter";
 
 export default function ProductPage() {
 
-    const {state,dispatch} = useProductContext()
+    const {state,dispatch,filteredData} = useProductContext()
 
 
     return (
@@ -15,7 +15,7 @@ export default function ProductPage() {
             <main className="grand-main">
                 <h2 className="font-black">Showing All Products</h2>
                 <div className="products-list">
-                    {filterData(state,productData).map((product) => {
+                    {filteredData.map((product) => {
                         return <ProductCard productData={product} />;
                     })}
                 </div>
