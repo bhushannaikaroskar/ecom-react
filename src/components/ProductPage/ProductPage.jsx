@@ -1,13 +1,11 @@
 import React from "react";
-import { filterData, useProductContext } from "../../context/productContext/ProductProvider";
-import { productData } from "../../data";
+import { useProductContext } from "../../context";
 import ProductCard from "../ProductCard";
 import ProductFilters from "./ProductFilter";
 
 export default function ProductPage() {
 
-    const {state,dispatch,filteredData} = useProductContext()
-
+    const {filteredData} = useProductContext()
 
     return (
         <>
