@@ -1,5 +1,4 @@
-import { createContext, useContext, useReducer, useState } from "react";
-import { productData} from "../../data"
+import { createContext, useContext, useState } from "react";
 
 const WishListContext = createContext();
 

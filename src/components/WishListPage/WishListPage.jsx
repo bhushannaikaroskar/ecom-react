@@ -1,11 +1,10 @@
 import React from "react";
 import { useWishListContext } from "../../context";
-import ProductCard from "../ProductCard";
 import WishListCard from "../WishListCard";
 
 export default function WishListPage() {
 
-    const {wishList,wishListHandler} = useWishListContext()
+    const {wishList} = useWishListContext()
 
     return (
         <main class="grand-main">

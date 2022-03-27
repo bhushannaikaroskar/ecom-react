@@ -2,7 +2,7 @@ import React from "react";
 import { useWishListContext } from "../context";
 
 export default function WishListCard({ productData }) {
-    const { id, title, description, price, imageSrc } = productData;
+    const {  title, description, price, imageSrc } = productData;
     const { wishListHandler } = useWishListContext();
 
     const calculatePercentage = (price) => {
