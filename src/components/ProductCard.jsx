@@ -1,28 +1,27 @@
-import React from "react";
-import { useWishListContext } from "../context";
-import { FavoriteIcon,FavoriteIconFilled } from "../icons/icons";
+import { useCartContext, useWishListContext } from "../context";
+import { FavoriteIconFilled } from "../icons/icons";
+import { calculatePercentage } from "../utils";
 
 export default function ProductCard({ productData }) {
-    const {id, title, description, price, imageSrc } = productData;
-    const {wishList,wishListHandler} = useWishListContext()
+    const { id, title, description, price, imageSrc } = productData;
+    const { wishList, wishListHandler } = useWishListContext();
+    const { dispatchCart } = useCartContext();
 
-    const isPresent = wishList.find(p => p.id === id)
+    const isPresent = wishList.find((p) => p.id === id);
 
     const redColor = {
-        color: "var(--COLOR-ERROR-DARK)"
-    }
-
-    const calculatePercentage = (price) => {
-        const percentage =
-            ((price.oldPrice - price.newPrice) * 100) / price.oldPrice;
-        return Math.round(percentage);
+        color: "var(--COLOR-ERROR-DARK)",
     };
 
     return (
         <div className="card">
             <div className="card-img-wrapper">
-                <button className={`btn btn-icon btn-icon-red card-favorite`} style={isPresent?redColor:{}} onClick={()=>wishListHandler(productData)}>
-                    {isPresent?<FavoriteIconFilled/>:<FavoriteIcon/>}
+                <button
+                    className={`btn btn-icon btn-icon-red card-favorite`}
+                    style={isPresent ? redColor : {}}
+                    onClick={() => wishListHandler(productData)}
+                >
+                    <FavoriteIconFilled />
                 </button>
                 <img className="card-img" src={imageSrc} alt="card-img" />
             </div>
@@ -49,7 +48,15 @@ export default function ProductCard({ productData }) {
                         <button className="btn btn-default card-btn">
                             Buy Now
                         </button>
-                        <button className="btn btn-outline card-btn ">
+                        <button
+                            className="btn btn-outline card-btn"
+                            onClick={() =>
+                                dispatchCart({
+                                    type: "ADD_TO_CART",
+                                    payload: productData,
+                                })
+                            }
+                        >
                             Add to Cart
                         </button>
                     </div>
