@@ -12,16 +12,28 @@ export function WishListIcon() {
     return <span className="material-icons font-x-large">favorite_border</span>;
 }
 
-export function FavoriteIcon(){
+export function FavoriteIcon() {
     return <span className="material-icons">favorite_outline</span>;
 }
 
-export function FavoriteIconFilled(){
+export function FavoriteIconFilled() {
     return <span className="material-icons">favorite</span>;
 }
 
 export function DarkModeIcon() {
     return <span className="material-icons font-x-large">dark_mode</span>;
+}
+
+export function DecrementIcon() {
+    return <span className="material-icons font-large">remove</span>;
+}
+
+export function IncrementIcon() {
+    return <span className="material-icons font-large">add</span>;
+}
+
+export function TrashIcon() {
+    return <span class="material-icons font-large">delete_outline</span>;
 }
 
 export function SearchIcon() {

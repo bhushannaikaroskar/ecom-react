@@ -1,7 +1,7 @@
 
 import { Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
-import {Footer,HomePage,ProductPage,NavBar,WishListPage} from "./components"
+import {Footer,HomePage,ProductPage,NavBar,WishListPage, CartPage} from "./components"
 
 function App() {
 
@@ -15,6 +15,7 @@ function App() {
           <Route path="/" element={<HomePage/>}/>
           <Route path="/product" element={<ProductPage/>}/>
           <Route path="/wishlist" element={<WishListPage/>}/>
+          <Route path="/cart" element={<CartPage/>}/>
         </Routes>
         <Footer/>
     </div>
