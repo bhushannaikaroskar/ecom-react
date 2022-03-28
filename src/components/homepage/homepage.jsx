@@ -52,7 +52,7 @@ export default function HomePage() {
             <h1 className="text-align-center p-y-2">Featured Products</h1>
             <div className="trending">
                 {featuredData.map((product) => {
-                    return <ProductCard productData={product} />;
+                    return <ProductCard key={product.id} productData={product} />;
                 })}
             </div>
         </main>

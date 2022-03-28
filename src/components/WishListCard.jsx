@@ -5,7 +5,6 @@ export default function WishListCard({ productData }) {
     const {  title, description, price, imageSrc } = productData;
     const { wishListHandler } = useWishListContext();
     const {dispatchCart} = useCartContext()
-    console.log(productData)
 
     const calculatePercentage = (price) => {
         const percentage =

@@ -33,7 +33,7 @@ export function IncrementIcon() {
 }
 
 export function TrashIcon() {
-    return <span class="material-icons font-large">delete_outline</span>;
+    return <span className="material-icons font-large">delete_outline</span>;
 }
 
 export function SearchIcon() {

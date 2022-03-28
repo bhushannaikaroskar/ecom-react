@@ -11,7 +11,7 @@ export default function WishListPage() {
             <h1 className="wishlist-header">Wishlist</h1>
             <div className="wishlist-container w-75">
                 {wishList.map((product)=>{
-                    return (<WishListCard productData={product}/>)
+                    return (<WishListCard key={product.id} productData={product}/>)
                 })}
             </div>
         </main>
