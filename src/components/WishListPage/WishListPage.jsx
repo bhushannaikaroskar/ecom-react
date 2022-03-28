@@ -7,9 +7,9 @@ export default function WishListPage() {
     const {wishList} = useWishListContext()
 
     return (
-        <main class="grand-main">
-            <h1 class="wishlist-header">Wishlist</h1>
-            <div class="wishlist-container w-75">
+        <main className="grand-main">
+            <h1 className="wishlist-header">Wishlist</h1>
+            <div className="wishlist-container w-75">
                 {wishList.map((product)=>{
                     return (<WishListCard productData={product}/>)
                 })}

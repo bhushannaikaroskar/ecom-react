@@ -1,9 +1,11 @@
 import React from "react";
-import { useWishListContext } from "../context";
+import { useCartContext, useWishListContext } from "../context";
 
 export default function WishListCard({ productData }) {
     const {  title, description, price, imageSrc } = productData;
     const { wishListHandler } = useWishListContext();
+    const {dispatchCart} = useCartContext()
+    console.log(productData)
 
     const calculatePercentage = (price) => {
         const percentage =
@@ -36,7 +38,10 @@ export default function WishListCard({ productData }) {
                         </div>
                     </div>
                     <div className="card-buttons flex-stretch">
-                        <button className="btn btn-default card-btn">
+                        <button className="btn btn-default card-btn" onClick={()=>{
+                            dispatchCart({type:"ADD_TO_CART",payload: productData})
+                            wishListHandler(productData)
+                            }}>
                             Move to Cart
                         </button>
                         <button className="btn btn-outline card-btn" onClick={()=>wishListHandler(productData)}>
