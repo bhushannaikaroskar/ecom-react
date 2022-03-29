@@ -1,0 +1,1 @@
+export {calculatePercentage} from "./functions/calculatePercentage"

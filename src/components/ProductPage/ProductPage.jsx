@@ -1,13 +1,11 @@
 import React from "react";
-import { filterData, useProductContext } from "../../context/productContext/ProductProvider";
-import { productData } from "../../data";
+import { useProductContext } from "../../context";
 import ProductCard from "../ProductCard";
 import ProductFilters from "./ProductFilter";
 
 export default function ProductPage() {
 
-    const {state,dispatch,filteredData} = useProductContext()
-
+    const {filteredData} = useProductContext()
 
     return (
         <>
@@ -16,7 +14,7 @@ export default function ProductPage() {
                 <h2 className="font-black">Showing All Products</h2>
                 <div className="products-list">
                     {filteredData.map((product) => {
-                        return <ProductCard productData={product} />;
+                        return <ProductCard key={product.id} productData={product} />;
                     })}
                 </div>
             </main>

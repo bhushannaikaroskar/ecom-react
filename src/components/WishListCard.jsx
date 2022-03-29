@@ -1,28 +1,20 @@
+import React from "react";
 import { useCartContext, useWishListContext } from "../context";
-import { FavoriteIconFilled } from "../icons/icons";
-import { calculatePercentage } from "../utils";
 
-export default function ProductCard({ productData }) {
-    const { id, title, description, price, imageSrc } = productData;
-    const { wishList, wishListHandler } = useWishListContext();
-    const { dispatchCart } = useCartContext();
+export default function WishListCard({ productData }) {
+    const {  title, description, price, imageSrc } = productData;
+    const { wishListHandler } = useWishListContext();
+    const {dispatchCart} = useCartContext()
 
-    const isPresent = wishList.find((p) => p.id === id);
-
-    const redColor = {
-        color: "var(--COLOR-ERROR-DARK)",
+    const calculatePercentage = (price) => {
+        const percentage =
+            ((price.oldPrice - price.newPrice) * 100) / price.oldPrice;
+        return Math.round(percentage);
     };
 
     return (
         <div className="card">
             <div className="card-img-wrapper">
-                <button
-                    className={`btn btn-icon btn-icon-red card-favorite`}
-                    style={isPresent ? redColor : {}}
-                    onClick={() => wishListHandler(productData)}
-                >
-                    <FavoriteIconFilled />
-                </button>
                 <img className="card-img" src={imageSrc} alt="card-img" />
             </div>
             <div className="card-content-wrapper">
@@ -45,19 +37,14 @@ export default function ProductCard({ productData }) {
                         </div>
                     </div>
                     <div className="card-buttons flex-stretch">
-                        <button className="btn btn-default card-btn">
-                            Buy Now
+                        <button className="btn btn-default card-btn" onClick={()=>{
+                            dispatchCart({type:"ADD_TO_CART",payload: productData})
+                            wishListHandler(productData)
+                            }}>
+                            Move to Cart
                         </button>
-                        <button
-                            className="btn btn-outline card-btn"
-                            onClick={() =>
-                                dispatchCart({
-                                    type: "ADD_TO_CART",
-                                    payload: productData,
-                                })
-                            }
-                        >
-                            Add to Cart
+                        <button className="btn btn-outline card-btn" onClick={()=>wishListHandler(productData)}>
+                            Remove
                         </button>
                     </div>
                 </div>
