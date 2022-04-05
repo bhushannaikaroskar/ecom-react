@@ -14,7 +14,7 @@ export default function ProductPage() {
                 <h2 className="font-black">Showing All Products</h2>
                 <div className="products-list">
                     {filteredData.map((product) => {
-                        return <ProductCard key={product.id} productData={product} />;
+                        return <ProductCard key={product._id} productData={product} />;
                     })}
                 </div>
             </main>

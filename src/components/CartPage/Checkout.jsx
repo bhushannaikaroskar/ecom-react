@@ -9,8 +9,8 @@ export default function Checkout() {
         let total = 0;
         let discountTotal = 0;
         cart.forEach((product)=>{
-            total = total + (product.price.newPrice * product.quantity)
-            discountTotal = discountTotal + (product.price.oldPrice * product.quantity)
+            total = total + (product.price.newPrice * product.qty)
+            discountTotal = discountTotal + (product.price.oldPrice * product.qty)
         })
         discountTotal = discountTotal - total;
         return [total,discountTotal];
