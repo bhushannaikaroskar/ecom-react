@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useCartContext, useWishListContext } from "../../context";
+import { useAuth, useCartContext, useWishListContext } from "../../context";
 import ShoppingCartIcon, {
     AccountIcon,
     DarkModeIcon,
@@ -12,6 +12,7 @@ import SearchBar from "./searchbar";
 export default function NavBar() {
     const { wishList } = useWishListContext();
     const { cart } = useCartContext();
+    const { auth,logout } = useAuth();
     return (
         <nav className="grand-nav navbar navbar-responsive box-shadow-100 p-2_5 p-y-1">
             <Logo />
@@ -39,12 +40,22 @@ export default function NavBar() {
                         )}
                     </div>
                 </NavLink>
-                <NavLink
-                    className="btn btn-link-secondary justify-content-start font-color-gray"
-                    to="/login"
-                >
-                    <AccountIcon />
-                </NavLink>
+                <div class="badge-container account flex flex-column">
+                    <NavLink
+                        className="btn btn-link-secondary justify-content-start font-color-gray"
+                        to="/login"
+                    >
+                        <AccountIcon />
+                    </NavLink>
+
+                    {auth.isAuthenticated && (
+                        <div class="account-modal">
+                            <button class="btn btn-link-secondary font-error" onClick={logout}>
+                                Logout
+                            </button>
+                        </div>
+                    )}
+                </div>
                 <button
                     id="toggle-theme"
                     className="btn btn-link-secondary justify-content-start font-medium  font-color-gray"
