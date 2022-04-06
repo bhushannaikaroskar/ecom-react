@@ -2,6 +2,12 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../context/authContext/AuthProvider";
 
+const guestCredentialsStyle = {
+    backgroundColor: "transparent",
+    border: 0,
+    cursor:"pointer"
+}
+
 const emailMatchPattern =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -17,7 +23,10 @@ export default function LoginPage() {
     const useGuestCredentials = () => {
         setEmail("guestuser@gmail.com");
         setPassword("guestcredentials123");
-        setTimeout(()=>loginUser("guestuser@gmail.com","guestcredentials123"),100)
+        setTimeout(
+            () => loginUser("guestuser@gmail.com", "guestcredentials123"),
+            100
+        );
     };
 
     const loginHandler = () => {
@@ -96,7 +105,11 @@ export default function LoginPage() {
                             />{" "}
                             <span className="p-0_5"> </span> Show Password
                         </label>
-                        <button className="btn btn-link-primary button-link fw-500" onClick={useGuestCredentials}>
+                        <button
+                            style={guestCredentialsStyle}
+                            className="btn-link-primary button-link fw-500"
+                            onClick={useGuestCredentials}
+                        >
                             Use Test Credentials
                         </button>
                     </div>

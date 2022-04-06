@@ -2,6 +2,7 @@ import React from "react";
 import { useProductContext } from "../../context";
 import ProductCard from "../ProductCard";
 import ProductFilters from "./ProductFilter";
+import DisplayMessage from "../DisplayMessage"
 
 export default function ProductPage() {
 
@@ -17,6 +18,7 @@ export default function ProductPage() {
                         return <ProductCard key={product._id} productData={product} />;
                     })}
                 </div>
+                {filteredData.length===0 && <DisplayMessage message={"No products found"}/>}
             </main>
         </>
     );

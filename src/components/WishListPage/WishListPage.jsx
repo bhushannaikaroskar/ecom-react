@@ -1,6 +1,7 @@
 import React from "react";
 import { useWishListContext } from "../../context";
 import WishListCard from "../WishListCard";
+import DisplayMessage from "../DisplayMessage"
 
 export default function WishListPage() {
 
@@ -13,6 +14,8 @@ export default function WishListPage() {
                 {wishList.map((product)=>{
                     return (<WishListCard key={product.id} productData={product}/>)
                 })}
+                
+                {wishList.length===0 && <DisplayMessage message={"Your Wishlist is Empty. Add some items to wishlist"}/>}
             </div>
         </main>
     );

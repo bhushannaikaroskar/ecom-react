@@ -1,6 +1,7 @@
 import React from "react";
 import { useCartContext } from "../../context";
 import CartCard from "../CartCard";
+import DisplayMessage from "../DisplayMessage";
 import Checkout from "./Checkout";
 
 export default function CartPage() {
@@ -18,6 +19,7 @@ export default function CartPage() {
                     })}
                 </ul>
                 {cart.length>0 && <Checkout/>}
+                {cart.length===0 && <DisplayMessage message={"Your Cart is Empty. Shop Something"}/>}
             </div>
         </main>
     );
