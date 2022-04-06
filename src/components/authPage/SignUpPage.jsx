@@ -3,10 +3,10 @@ import { NavLink } from "react-router-dom";
 import { useAuth } from "../../context";
 
 export default function SignUpPage() {
-    const [email, setEmail] = useState("bhushan@neog.camp");
+    const [email, setEmail] = useState("");
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
-    const [password, setPassword] = useState("bhushannaik");
+    const [password, setPassword] = useState("");
     const [acceptTerms, setAcceptTerms] = useState(false);
     const [termsError, setTermsError] = useState("");
 

@@ -6,30 +6,36 @@ const emailMatchPattern =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 export default function LoginPage() {
-    const [email, setEmail] = useState("bhushan@neog.camp");
+    const [email, setEmail] = useState("");
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
-    const [password, setPassword] = useState("bhushannaik");
+    const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
-    const { error,loginUser } = useAuth();
+    const { error, loginUser } = useAuth();
 
-    const loginHandler = async () => {
+    const useGuestCredentials = () => {
+        setEmail("guestuser@gmail.com");
+        setPassword("guestcredentials123");
+        setTimeout(()=>loginUser("guestuser@gmail.com","guestcredentials123"),100)
+    };
+
+    const loginHandler = () => {
         if (!email.match(emailMatchPattern)) {
             setEmailError(true);
-            return 
+            return;
         } else {
             setEmailError(false);
         }
 
-        if(password.length<8){
+        if (password.length < 8) {
             setPasswordError(true);
-            return 
-        }else{
+            return;
+        } else {
             setPasswordError(false);
         }
 
-        loginUser(email,password)
+        loginUser(email, password);
     };
 
     return (
@@ -74,9 +80,11 @@ export default function LoginPage() {
                             }
                             onChange={(e) => setPassword(e.target.value)}
                         />
-                        {passwordError && <span className="input-message">
-                            Please enter password more that 8 characters
-                        </span>}
+                        {passwordError && (
+                            <span className="input-message">
+                                Please enter password more that 8 characters
+                            </span>
+                        )}
                     </div>
                     <div className="flex justify-content-between w-100 p-y-1">
                         <label className="font-small fw-500 flex align-items-center">
@@ -88,9 +96,9 @@ export default function LoginPage() {
                             />{" "}
                             <span className="p-0_5"> </span> Show Password
                         </label>
-                        <a className="button-link" href="/pages/login.html">
-                            Forget Password
-                        </a>
+                        <button className="btn btn-link-primary button-link fw-500" onClick={useGuestCredentials}>
+                            Use Test Credentials
+                        </button>
                     </div>
                     <div className="p-1"></div>
                     <button
@@ -99,7 +107,11 @@ export default function LoginPage() {
                     >
                         Login
                     </button>
-                    {(error) && <div className="font-error font-small">{error.response.data.errors[0]}</div>}
+                    {error && (
+                        <div className="font-error font-small">
+                            {error.response.data.errors[0]}
+                        </div>
+                    )}
                     <div className="flex justify-content-center w-100 p-y-1 text-align-center">
                         <NavLink
                             className="btn btn-link-secondary"
