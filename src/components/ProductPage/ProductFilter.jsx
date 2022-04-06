@@ -2,13 +2,17 @@ import { useProductContext } from "../../context/productContext/ProductProvider"
 
 export default function ProductFilters() {
     const { state, dispatch } = useProductContext();
+    const {maxPrice,sort,rating,category} = state
 
     return (
         <aside className="grand-filter sidebar sidebar-hidden">
             <ul className="list">
                 <div className="grand-filter-header">
                     <h2 className="font-black fw-700 p-y-2">Filters</h2>
-                    <button className="btn btn-link-primary font-small">
+                    <button
+                        className="btn btn-link-primary font-small"
+                        onClick={() => dispatch({ type: "RESET" })}
+                    >
                         CLEAR ALL
                     </button>
                 </div>
@@ -26,6 +30,7 @@ export default function ProductFilters() {
                                             payload: "LOW_TO_HIGH",
                                         })
                                     }
+                                    checked={sort==="LOW_TO_HIGH"}
                                 />{" "}
                                 Low To High
                             </label>
@@ -41,6 +46,7 @@ export default function ProductFilters() {
                                             payload: "HIGH_TO_LOW",
                                         })
                                     }
+                                    checked={sort==="HIGH_TO_LOW"}
                                 />{" "}
                                 High To Low
                             </label>
@@ -56,6 +62,7 @@ export default function ProductFilters() {
                                             payload: "POPULARITY",
                                         })
                                     }
+                                    checked={sort==="POPULARITY"}
                                 />{" "}
                                 Popularity
                             </label>
@@ -77,6 +84,7 @@ export default function ProductFilters() {
                                             payload: "board",
                                         })
                                     }
+                                    checked={category.includes("board")}
                                 />{" "}
                                 Chess Boards{" "}
                             </label>
@@ -92,6 +100,7 @@ export default function ProductFilters() {
                                             payload: "set",
                                         })
                                     }
+                                    checked={category.includes("set")}
                                 />{" "}
                                 Chess sets{" "}
                             </label>
@@ -107,6 +116,7 @@ export default function ProductFilters() {
                                             payload: "pieces",
                                         })
                                     }
+                                    checked={category.includes("pieces")}
                                 />{" "}
                                 Chess Pieces{" "}
                             </label>
@@ -122,6 +132,7 @@ export default function ProductFilters() {
                                             payload: "accessories",
                                         })
                                     }
+                                    checked={category.includes("accessories")}
                                 />{" "}
                                 Chess Accessories
                             </label>
@@ -139,6 +150,7 @@ export default function ProductFilters() {
                                     onChange={() =>
                                         dispatch({ type: "RATING", payload: 4 })
                                     }
+                                    checked={rating===4}
                                 />{" "}
                                 4 star
                             </label>
@@ -151,6 +163,7 @@ export default function ProductFilters() {
                                     onChange={() =>
                                         dispatch({ type: "RATING", payload: 3 })
                                     }
+                                    checked={rating===3}
                                 />{" "}
                                 3 star
                             </label>
@@ -163,6 +176,7 @@ export default function ProductFilters() {
                                     onChange={() =>
                                         dispatch({ type: "RATING", payload: 2 })
                                     }
+                                    checked={rating===2}
                                 />{" "}
                                 2 star
                             </label>
@@ -175,6 +189,7 @@ export default function ProductFilters() {
                                     onChange={() =>
                                         dispatch({ type: "RATING", payload: 1 })
                                     }
+                                    checked={rating===1}
                                 />{" "}
                                 1 star
                             </label>
@@ -186,16 +201,16 @@ export default function ProductFilters() {
                     <div className="grand-slider-wrapper">
                         <div className="slider-range">
                             <label>0</label>
-                            <label>5000</label>
+                            <label>{maxPrice===Infinity?"5000":maxPrice}</label>
                         </div>
                         <input
                             type="range"
                             min="0"
                             max="5000"
-                            step="500"
-                            defaultValue={state.maxPrice}
+                            step="100"
+                            defaultValue={maxPrice}
                             className="grand-slider"
-                            onChange={(e) => e.target.value = e.target.value} 
+                            onChange={(e) => (e.target.value = e.target.value)}
                             onClick={(e) =>
                                 dispatch({
                                     type: "MAX_PRICE",
