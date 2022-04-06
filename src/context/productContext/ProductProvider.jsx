@@ -1,6 +1,6 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer, useState } from "react";
 import {reducer} from "../../reducers/product-reducer"
-import { productData} from "../../data"
+import useAxios from "../../utils/custom-hooks/useAxios";
 
 const ProductContext = createContext();
 
@@ -47,8 +47,18 @@ const useFilterData = (stateObj, data) => {
 
 export default function FilterProvider({ children }) {
     const [state, dispatch] = useReducer(reducer, initialState);
-
+    const [productData,setProductData] = useState([])
+    const {fetchData} = useAxios();
     const filteredData = useFilterData(state,productData)
+
+    useEffect(()=>{
+        fetchData({
+            method: "get",
+            url: "/api/products"
+        }).then((res)=>{
+            setProductData(res.data.products)
+        })
+    },[])
 
     return (
         <ProductContext.Provider value={{ state, dispatch,filteredData }}>

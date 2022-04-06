@@ -12,7 +12,7 @@ export default function CartPage() {
             <div className="cart-wrapper flex align-items-start justify-content-center p-y-2">
                 <ul className="list">
                     {cart.map((product) => {
-                        return <li key={product.id} className="list-item">
+                        return <li key={product._id} className="list-item">
                             <CartCard productData={product}/>
                         </li>;
                     })}

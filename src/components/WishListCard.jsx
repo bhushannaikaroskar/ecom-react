@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useCartContext, useWishListContext } from "../context";
 
 export default function WishListCard({ productData }) {
-    const {  title, description, price, imageSrc } = productData;
+    const { title, description, price, imageSrc } = productData;
+    const [isLoading, setIsLoading] = useState(false);
     const { wishListHandler } = useWishListContext();
-    const {dispatchCart} = useCartContext()
+    const { addToCart } = useCartContext();
 
     const calculatePercentage = (price) => {
         const percentage =
@@ -37,13 +38,21 @@ export default function WishListCard({ productData }) {
                         </div>
                     </div>
                     <div className="card-buttons flex-stretch">
-                        <button className="btn btn-default card-btn" onClick={()=>{
-                            dispatchCart({type:"ADD_TO_CART",payload: productData})
-                            wishListHandler(productData)
-                            }}>
+                        <button
+                            className="btn btn-default card-btn"
+                            onClick={() => {
+                                addToCart(productData, setIsLoading);
+                                wishListHandler(productData, setIsLoading);
+                            }}
+                            disabled={isLoading}
+                        >
                             Move to Cart
                         </button>
-                        <button className="btn btn-outline card-btn" onClick={()=>wishListHandler(productData)}>
+                        <button
+                            className="btn btn-outline card-btn"
+                            onClick={() => wishListHandler(productData,setIsLoading)}
+                            disabled={isLoading}
+                        >
                             Remove
                         </button>
                     </div>
