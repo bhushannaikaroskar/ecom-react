@@ -1,9 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useAuth, useCartContext, useWishListContext } from "../../context";
+import { useAuth, useCartContext, useTheme, useWishListContext } from "../../context";
 import ShoppingCartIcon, {
     AccountIcon,
     DarkModeIcon,
+    LightModeIcon,
     WishListIcon,
 } from "../../icons/icons";
 import Logo from "./logo";
@@ -13,6 +14,8 @@ export default function NavBar() {
     const { wishList } = useWishListContext();
     const { cart } = useCartContext();
     const { auth,logout } = useAuth();
+    const {theme,toggle} = useTheme()
+ 
     return (
         <nav className="grand-nav navbar navbar-responsive box-shadow-100 p-2_5 p-y-1">
             <Logo />
@@ -59,8 +62,9 @@ export default function NavBar() {
                 <button
                     id="toggle-theme"
                     className="btn btn-link-secondary justify-content-start font-medium  font-color-gray"
+                    onClick={toggle}
                 >
-                    <DarkModeIcon />
+                    {theme === "light" ? <DarkModeIcon />:<LightModeIcon/>}
                 </button>
             </div>
         </nav>

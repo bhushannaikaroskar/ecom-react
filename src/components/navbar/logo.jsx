@@ -1,11 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { grandLogo } from '../../assets'
+import { grandDarkLogo, grandLogo } from '../../assets'
+import { useTheme } from '../../context'
 
 export default function Logo() {
+
+  const {theme} = useTheme();
+
   return (
     <Link to="/" className="nav-logo">
-        <img src={grandLogo} alt="logo"/>
+        <img src={theme==="light"?grandLogo:grandDarkLogo} alt="logo"/>
     </Link>
   )
 }
