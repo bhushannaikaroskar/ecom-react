@@ -208,7 +208,7 @@ export default function ProductFilters() {
                             min="0"
                             max="5000"
                             step="100"
-                            defaultValue={maxPrice}
+                            defaultValue={maxPrice===Infinity?5000:maxPrice}
                             className="grand-slider"
                             onChange={(e) => (e.target.value = e.target.value)}
                             onClick={(e) =>

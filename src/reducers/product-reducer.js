@@ -18,6 +18,8 @@ export const reducer = (state, action) => {
             return state.category.includes(action.payload)
                 ? {...state,category: [...state.category.filter((c) => c !== action.payload)]}
                 : { ...state, category: [...state.category, action.payload] };
+        case "HOME_CATEGORY":
+            return {...state,category:[action.payload]}
         case "RESET":
             return { ...initialState,category:[]};
                 

@@ -38,15 +38,17 @@ export default function HomePage() {
             </div>
             <h1 className="text-align-center p-y-2">Top Categories</h1>
             <div className="category w-100 p-y-2">
-                <CategoryCard title="Chess Set" imageLink={CategoryChessSet} />
-                <CategoryCard title="Pieces" imageLink={CategoryChessPiece} />
+                <CategoryCard title="Chess Set" imageLink={CategoryChessSet} categoryName="set"/>
+                <CategoryCard title="Pieces" imageLink={CategoryChessPiece} categoryName="pieces"/>
                 <CategoryCard
                     title="Chess Boards"
                     imageLink={CategoryChessBoard}
+                    categoryName="board"
                 />
                 <CategoryCard
                     title="Chess Accessories"
                     imageLink={CategoryClock}
+                    categoryName="accessories"
                 />
             </div>
             <h1 className="text-align-center p-y-2">Featured Products</h1>
