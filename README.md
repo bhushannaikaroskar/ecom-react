@@ -46,6 +46,4 @@ Grand store is one stop e-commerce platform for all the chess lovers. All the pr
 
 <br>
 
-*(Note: Grand store runs on a mock backend. This means that the instance of server created is temporary and on refreshing the page the previous state is gone. So do not reload at any time while using the site or it will load a new instanceof server. )*
-
-You can follow 
+*(Note: Grand store runs on a mock backend. This means that the instance of server created is temporary and on refreshing the page the previous state is gone. So do not reload at any time while using the site or it will load a new instance of server. )*
