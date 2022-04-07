@@ -5,7 +5,7 @@ import { FavoriteIconFilled } from "../icons/icons";
 import { calculatePercentage } from "../utils";
 
 export default function ProductCard({ productData }) {
-    const { _id, title, description, price, imageSrc } = productData;
+    const { _id, title,rating, description, price, imageSrc } = productData;
     const [isLoading, setIsLoading] = useState(false);
     const { wishList, wishListHandler } = useWishListContext();
     const { addToCart } = useCartContext();
@@ -28,11 +28,12 @@ export default function ProductCard({ productData }) {
                 >
                     <FavoriteIconFilled />
                 </button>
+                <div className="card-rating">{rating.toFixed(1)}</div>
                 <img className="card-img" src={imageSrc} alt="card-img" />
             </div>
             <div className="card-content-wrapper">
                 <div className="card-content">
-                    <h2 className="card-title">{title}</h2>
+                    <h2 className="card-title" title={title}>{title}</h2>
                     <div className="card-description">{description}</div>
                 </div>
                 <div className="card-cta">

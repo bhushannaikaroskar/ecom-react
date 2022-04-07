@@ -1,5 +1,7 @@
 import { createContext, useContext, useReducer } from "react";
+import { errorToast, successToast } from "../../utils";
 import useAxios from "../../utils/custom-hooks/useAxios";
+import { useTheme } from "../themeContext/ThemeProvider";
 
 const AuthContext = createContext();
 
@@ -10,6 +12,7 @@ const initialAuthState = {
 
 export default function AuthProvider({ children }) {
     const { response, error, fetchData } = useAxios();
+    const {theme} = useTheme()
 
     const authReducer = (state, action) => {
         switch (action.type) {
@@ -44,8 +47,10 @@ export default function AuthProvider({ children }) {
                     type: "VERIFIED",
                     payload: { token: res.data.encodedToken },
                 });
+                successToast("Logged in Successfully",theme)
             } else {
                 dispatchAuth({ type: "RESET" });
+                errorToast("There was some error while logginng in",theme)
             }
         });
     };
@@ -64,14 +69,17 @@ export default function AuthProvider({ children }) {
                     type: "VERIFIED",
                     payload: { token: res.data.encodedToken },
                 });
+                successToast("Signin Successful",theme)
             } else {
                 dispatchAuth({ type: "RESET" });
+                errorToast("There was some error in signing",theme)
             }
         });
     };
 
     const logout = () => {
         dispatchAuth({ type: "RESET" });
+        successToast("Successfully logged out.",theme)
     };
 
     return (

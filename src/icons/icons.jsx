@@ -24,6 +24,10 @@ export function DarkModeIcon() {
     return <span className="material-icons font-x-large">dark_mode</span>;
 }
 
+export function LightModeIcon() {
+    return <span className="material-icons font-x-large">light_mode</span>;
+}
+
 export function DecrementIcon() {
     return <span className="material-icons font-large">remove</span>;
 }

@@ -1,8 +1,12 @@
 import React from "react";
 import "./error.css";
 import image from "../../assets/error-page/error-page-3.png";
+import { useDocumentTitle } from "../../utils";
 
 export default function ErrorPage() {
+
+    useDocumentTitle("Page Not Found")
+
     return (
         <div className="grand-main error-page">
             <div className="img-wrap ">

@@ -8,6 +8,7 @@ import {
     CartProvider,
     FilterProvider,
     WishListProvider,
+    ThemeProvider,
 } from "./context";
 import { makeServer } from "./server";
 
@@ -16,21 +17,19 @@ makeServer();
 
 ReactDOM.render(
     <React.StrictMode>
-        <AuthProvider>
-            <Router>
-                <FilterProvider>
-                    <CartProvider>
-                        <WishListProvider>
-                            <App />
-                        </WishListProvider>
-                    </CartProvider>
-                </FilterProvider>
-            </Router>
-        </AuthProvider>
+        <ThemeProvider>
+            <AuthProvider>
+                <Router>
+                    <FilterProvider>
+                        <CartProvider>
+                            <WishListProvider>
+                                <App />
+                            </WishListProvider>
+                        </CartProvider>
+                    </FilterProvider>
+                </Router>
+            </AuthProvider>
+        </ThemeProvider>
     </React.StrictMode>,
     document.getElementById("root")
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

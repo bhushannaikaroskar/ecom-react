@@ -8,11 +8,17 @@ import {
     CategoryChessBoard,
     CategoryChessSet,
     CategoryClock,
+    CategoryBook,
+    CategoryWearables
 } from "../../assets";
 import ProductCard from "../ProductCard";
 import { NavLink } from "react-router-dom";
+import { useDocumentTitle } from "../../utils";
 
 export default function HomePage() {
+
+    useDocumentTitle("Home")
+
     return (
         <main className="grand-main">
             <div className="carousel img-wrap w-100">
@@ -38,15 +44,27 @@ export default function HomePage() {
             </div>
             <h1 className="text-align-center p-y-2">Top Categories</h1>
             <div className="category w-100 p-y-2">
-                <CategoryCard title="Chess Set" imageLink={CategoryChessSet} />
-                <CategoryCard title="Pieces" imageLink={CategoryChessPiece} />
+                <CategoryCard title="Chess Set" imageLink={CategoryChessSet} categoryName="set"/>
+                <CategoryCard title="Pieces" imageLink={CategoryChessPiece} categoryName="pieces"/>
                 <CategoryCard
                     title="Chess Boards"
                     imageLink={CategoryChessBoard}
+                    categoryName="board"
                 />
                 <CategoryCard
                     title="Chess Accessories"
                     imageLink={CategoryClock}
+                    categoryName="accessories"
+                />
+                <CategoryCard
+                    title="Chess Books"
+                    imageLink={CategoryBook}
+                    categoryName="books"
+                />
+                <CategoryCard
+                    title="Wearables"
+                    imageLink={CategoryWearables}
+                    categoryName="clothing"
                 />
             </div>
             <h1 className="text-align-center p-y-2">Featured Products</h1>

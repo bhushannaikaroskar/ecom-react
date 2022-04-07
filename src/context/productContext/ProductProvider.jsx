@@ -1,16 +1,8 @@
 import { createContext, useContext, useEffect, useReducer, useState } from "react";
-import {reducer} from "../../reducers/product-reducer"
+import {reducer,initialState} from "../../reducers/product-reducer"
 import useAxios from "../../utils/custom-hooks/useAxios";
 
 const ProductContext = createContext();
-
-const initialState = {
-    minPrice: 0,
-    maxPrice: Infinity,
-    rating: 0,
-    sort: "",
-    category:[]
-};
 
 const useFilterData = (stateObj, data) => {
     let newData = [...data];
@@ -46,7 +38,7 @@ const useFilterData = (stateObj, data) => {
 
 
 export default function FilterProvider({ children }) {
-    const [state, dispatch] = useReducer(reducer, initialState);
+    const [state, dispatch] = useReducer(reducer, {...initialState});
     const [productData,setProductData] = useState([])
     const {fetchData} = useAxios();
     const filteredData = useFilterData(state,productData)
