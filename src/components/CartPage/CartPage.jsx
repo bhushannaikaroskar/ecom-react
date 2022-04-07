@@ -1,11 +1,13 @@
 import React from "react";
 import { useCartContext } from "../../context";
+import { useDocumentTitle } from "../../utils";
 import CartCard from "../CartCard";
 import DisplayMessage from "../DisplayMessage";
 import Checkout from "./Checkout";
 
 export default function CartPage() {
     const { cart} = useCartContext();
+    useDocumentTitle("Cart")
 
     return (
         <main className="grand-main">

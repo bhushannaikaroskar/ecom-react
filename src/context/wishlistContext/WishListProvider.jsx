@@ -1,7 +1,9 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { errorToast, successToast } from "../../utils";
 import useAxios from "../../utils/custom-hooks/useAxios";
 import { useAuth } from "../authContext/AuthProvider";
+import { useTheme } from "../themeContext/ThemeProvider";
 
 const WishListContext = createContext();
 
@@ -10,6 +12,7 @@ export default function WishListProvider({ children }) {
     const { auth } = useAuth();
     const navigate = useNavigate();
     const { fetchData } = useAxios();
+    const {theme} = useTheme()
 
     const fetchWishList = (product) => {
         fetchData({
@@ -40,12 +43,14 @@ export default function WishListProvider({ children }) {
             console.log("add to wishlist called",res)
             if (res.status !== 404 && res.status !== 500) {
                 setWishList(res.data.wishlist);
+                successToast("Item added to wishlist",theme)
             } else {
                 isError = true;
             }
         })
         if(isError){
             navigate("/login");
+            errorToast("Login first to use wishlist",theme)
         }
     };
 
@@ -59,6 +64,7 @@ export default function WishListProvider({ children }) {
         }).then((res) => {
             if (res.status !== 404 && res.status !== 500) {
                 setWishList(res.data.wishlist);
+                successToast("Item removed from wishlist",theme)
             } else {
                 isError = true;
             }
@@ -67,6 +73,7 @@ export default function WishListProvider({ children }) {
         
         if(isError){
             navigate("/login");
+            errorToast("Login first to use wishlist",theme)
         }
     };
 

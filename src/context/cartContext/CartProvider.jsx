@@ -1,13 +1,16 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { errorToast, successToast } from "../../utils";
 import useAxios from "../../utils/custom-hooks/useAxios";
 import { useAuth } from "../authContext/AuthProvider";
+import { useTheme } from "../themeContext/ThemeProvider";
 
 const CartContext = createContext();
 
 export default function CartProvider({ children }) {
     const [cart, setCart] = useState([]);
     const { auth } = useAuth();
+    const {theme} = useTheme();
     const navigate = useNavigate();
     const { loading, fetchData } = useAxios();
 
@@ -35,6 +38,7 @@ export default function CartProvider({ children }) {
         setLoader(false);
         if (isError) {
             navigate("/login");
+            errorToast("Login first to use Cart",theme)
         }
     };
 
@@ -54,6 +58,7 @@ export default function CartProvider({ children }) {
                 console.log(res);
                 if (res.status !== 404 && res.status !== 500) {
                     setCart(res.data.cart);
+                    successToast("Item added to cart",theme)
                 } else {
                     isError = true;
                 }
@@ -64,6 +69,7 @@ export default function CartProvider({ children }) {
         setLoader(false);
         if (isError) {
             navigate("/login");
+            errorToast("Login first to use Cart",theme)
         }
     };
 
@@ -78,6 +84,7 @@ export default function CartProvider({ children }) {
         }).then((res) => {
                 if (res.status !== 404 && res.status !== 500) {
                     setCart(res.data.cart);
+                    successToast("Item removed from cart",theme)
                 } else {
                     isError = true;
                 }

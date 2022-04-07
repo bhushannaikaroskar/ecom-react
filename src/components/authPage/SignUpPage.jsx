@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../context";
+import { useDocumentTitle } from "../../utils";
 
 export default function SignUpPage() {
     const [email, setEmail] = useState("");
@@ -11,11 +12,12 @@ export default function SignUpPage() {
     const [termsError, setTermsError] = useState("");
 
     const { error, signUpUser } = useAuth();
+    useDocumentTitle("Signup")
 
     const emailMatchPattern =
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-    const signupHandler = async () => {
+    const signupHandler = () => {
         if (!email.match(emailMatchPattern)) {
             setEmailError(true);
             return;

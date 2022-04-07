@@ -43,7 +43,7 @@ export default function NavBar() {
                         )}
                     </div>
                 </NavLink>
-                <div class="badge-container account flex flex-column">
+                <div className="badge-container account flex flex-column">
                     <NavLink
                         className="btn btn-link-secondary justify-content-start font-color-gray"
                         to="/login"
@@ -52,8 +52,8 @@ export default function NavBar() {
                     </NavLink>
 
                     {auth.isAuthenticated && (
-                        <div class="account-modal">
-                            <button class="btn btn-link-secondary font-error" onClick={logout}>
+                        <div className="account-modal">
+                            <button className="btn btn-link-secondary font-error" onClick={logout}>
                                 Logout
                             </button>
                         </div>

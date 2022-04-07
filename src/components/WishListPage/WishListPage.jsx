@@ -2,10 +2,13 @@ import React from "react";
 import { useWishListContext } from "../../context";
 import WishListCard from "../WishListCard";
 import DisplayMessage from "../DisplayMessage"
+import { useDocumentTitle } from "../../utils";
 
 export default function WishListPage() {
 
     const {wishList} = useWishListContext()
+
+    useDocumentTitle('Wishlist')
 
     return (
         <main className="grand-main">

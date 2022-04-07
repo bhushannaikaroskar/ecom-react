@@ -17,9 +17,9 @@ makeServer();
 
 ReactDOM.render(
     <React.StrictMode>
-        <AuthProvider>
-            <Router>
-                <ThemeProvider>
+        <ThemeProvider>
+            <AuthProvider>
+                <Router>
                     <FilterProvider>
                         <CartProvider>
                             <WishListProvider>
@@ -27,11 +27,9 @@ ReactDOM.render(
                             </WishListProvider>
                         </CartProvider>
                     </FilterProvider>
-                </ThemeProvider>
-            </Router>
-        </AuthProvider>
+                </Router>
+            </AuthProvider>
+        </ThemeProvider>
     </React.StrictMode>,
     document.getElementById("root")
 );
-
-

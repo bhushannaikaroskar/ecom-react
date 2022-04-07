@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../context/authContext/AuthProvider";
+import { useDocumentTitle } from "../../utils";
 
 const guestCredentialsStyle = {
     backgroundColor: "transparent",
@@ -17,6 +18,8 @@ export default function LoginPage() {
     const [passwordError, setPasswordError] = useState(false);
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+
+    useDocumentTitle("Login")
 
     const { error, loginUser } = useAuth();
 

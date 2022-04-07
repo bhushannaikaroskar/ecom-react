@@ -3,10 +3,12 @@ import { useProductContext } from "../../context";
 import ProductCard from "../ProductCard";
 import ProductFilters from "./ProductFilter";
 import DisplayMessage from "../DisplayMessage"
+import { useDocumentTitle } from "../../utils";
 
 export default function ProductPage() {
 
     const {filteredData} = useProductContext()
+    useDocumentTitle("Products")
 
     return (
         <>

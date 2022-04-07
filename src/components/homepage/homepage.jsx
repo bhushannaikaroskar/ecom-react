@@ -13,8 +13,12 @@ import {
 } from "../../assets";
 import ProductCard from "../ProductCard";
 import { NavLink } from "react-router-dom";
+import { useDocumentTitle } from "../../utils";
 
 export default function HomePage() {
+
+    useDocumentTitle("Home")
+
     return (
         <main className="grand-main">
             <div className="carousel img-wrap w-100">
