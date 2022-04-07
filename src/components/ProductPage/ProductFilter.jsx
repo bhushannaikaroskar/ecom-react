@@ -137,6 +137,38 @@ export default function ProductFilters() {
                                 Chess Accessories
                             </label>
                         </li>
+                        <li className="list-item p-x-0">
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="wearables"
+                                    onChange={() =>
+                                        dispatch({
+                                            type: "CATEGORY",
+                                            payload: "clothing",
+                                        })
+                                    }
+                                    checked={category.includes("clothing")}
+                                />{" "}
+                                Wearables
+                            </label>
+                        </li>
+                        <li className="list-item p-x-0">
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="books"
+                                    onChange={() =>
+                                        dispatch({
+                                            type: "CATEGORY",
+                                            payload: "books",
+                                        })
+                                    }
+                                    checked={category.includes("books")}
+                                />{" "}
+                                Chess Books
+                            </label>
+                        </li>
                     </ul>
                 </li>
                 <li className="list-item">

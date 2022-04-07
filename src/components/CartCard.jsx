@@ -17,17 +17,16 @@ export default function CartCard({ productData }) {
             </div>
             <div className="card-content-wrapper">
                 <div className="card-content">
-                    <h2 className="card-title">{title}</h2>
+                    <h2 className="card-title" title={title}>{title}</h2>
                 </div>
                 <div className="card-cta">
                     <div className="card-price">
                         <span className="card-discount-price">
-                            {price.newPrice}
+                            Rs {price.newPrice}
                         </span>
                         <div className="card-price-details">
                             <span className="card-original-price">
-                                {" "}
-                                {price.oldPrice}
+                                Rs {price.oldPrice}
                             </span>
                             <span className="card-discount-percentage">
                                 {" "}

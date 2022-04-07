@@ -54,7 +54,6 @@ html[data-theme="dark"] .auth-container {
         "footer footer";
     background-color: var(--COLOR-SHADOW-PRIMARY-50);
     min-height: 100vh;
-    max-height: 100vh;
 }
 
 .grand-nav {
@@ -433,4 +432,32 @@ html[data-theme="dark"] .grand-footer {
     :root {
         font-size: 50%;
     }
+}
+
+/* PRODUCT CARD */
+
+.card-title{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor:pointer;
+}
+
+.card-content-wrapper{
+    min-width: 0;
+}
+
+.card-img-wrapper{
+    position : relative
+}
+
+.card-rating{
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    padding: 0 8px;
+    font-weight: 700;
+    border-radius: 2px;
+    color: var(--COLOR-TEXT-BLACK);
+    background-color: var(--COLOR-WARNING-DARK);
 }

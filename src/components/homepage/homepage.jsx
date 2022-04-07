@@ -8,6 +8,8 @@ import {
     CategoryChessBoard,
     CategoryChessSet,
     CategoryClock,
+    CategoryBook,
+    CategoryWearables
 } from "../../assets";
 import ProductCard from "../ProductCard";
 import { NavLink } from "react-router-dom";
@@ -49,6 +51,16 @@ export default function HomePage() {
                     title="Chess Accessories"
                     imageLink={CategoryClock}
                     categoryName="accessories"
+                />
+                <CategoryCard
+                    title="Chess Books"
+                    imageLink={CategoryBook}
+                    categoryName="books"
+                />
+                <CategoryCard
+                    title="Wearables"
+                    imageLink={CategoryWearables}
+                    categoryName="clothing"
                 />
             </div>
             <h1 className="text-align-center p-y-2">Featured Products</h1>

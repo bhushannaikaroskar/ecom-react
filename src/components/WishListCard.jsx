@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useCartContext, useWishListContext } from "../context";
 
 export default function WishListCard({ productData }) {
-    const { title, description, price, imageSrc } = productData;
+    const { title,rating, description, price, imageSrc } = productData;
     const [isLoading, setIsLoading] = useState(false);
     const { wishListHandler } = useWishListContext();
     const { addToCart } = useCartContext();
@@ -17,10 +17,11 @@ export default function WishListCard({ productData }) {
         <div className="card">
             <div className="card-img-wrapper">
                 <img className="card-img" src={imageSrc} alt="card-img" />
+                <div className="card-rating">{rating.toFixed(1)}</div>
             </div>
             <div className="card-content-wrapper">
                 <div className="card-content">
-                    <h2 className="card-title">{title}</h2>
+                    <h2 className="card-title" title={title}>{title}</h2>
                     <div className="card-description">{description}</div>
                 </div>
                 <div className="card-cta">
