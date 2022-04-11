@@ -33,7 +33,7 @@ export default function ProductCard({ productData }) {
             </div>
             <div className="card-content-wrapper">
                 <div className="card-content">
-                    <h2 className="card-title" title={title}>{title}</h2>
+                    <h2 className="card-title" onClick={()=>navigate(`/product/${_id}`)} title={title}>{title}</h2>
                     <div className="card-description">{description}</div>
                 </div>
                 <div className="card-cta">

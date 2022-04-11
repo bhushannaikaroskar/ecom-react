@@ -53,7 +53,7 @@ export default function FilterProvider({ children }) {
     },[])
 
     return (
-        <ProductContext.Provider value={{ state, dispatch,filteredData }}>
+        <ProductContext.Provider value={{ state, dispatch,filteredData,productData }}>
             {children}
         </ProductContext.Provider>
     );
