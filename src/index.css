@@ -10,6 +10,13 @@
     font-size: 62.5%;
     --COLOR-SHADOW-4: #1b1b1b9d;
     --COLOR-SIDEBAR-BG: #f4f4f4;
+    --COLOR-ALPHA-WHITE: #ffffffaa;
+
+}
+
+:root[data-theme=dark]{
+    
+    --COLOR-ALPHA-WHITE: #000000aa;
 }
 
 html {
@@ -458,6 +465,6 @@ html[data-theme="dark"] .grand-footer {
     padding: 0 8px;
     font-weight: 700;
     border-radius: 2px;
-    color: var(--COLOR-TEXT-BLACK);
-    background-color: var(--COLOR-WARNING-DARK);
+    color: var(--OFF-BLACK);
+    background-color: var(--COLOR-ALPHA-WHITE);
 }

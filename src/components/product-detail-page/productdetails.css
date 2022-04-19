@@ -1,4 +1,35 @@
 
+.img-container{
+    display: flex;
+    align-items: center ;
+    justify-content: center;
+    height: 70vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.img-container img{
+    object-fit: cover;
+    height: 100%;
+}
+
+.wishlist-button{
+    
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0 8px;
+    font-weight: 700;
+    border-radius: 2px;
+}
+
+.rating-container{
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px   ;
+    align-items: center;
+}
+
 .star-rating{
     display: inline-block;
 }
@@ -27,5 +58,19 @@
 
 .product-description{
     font-size: 1.6rem;
+}
+
+.price-cta{
+    display: flex;
+    gap: 10px;
     
 }
+
+.similar-products{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+
