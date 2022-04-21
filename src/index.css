@@ -66,6 +66,7 @@ html[data-theme="dark"] .auth-container {
 .grand-nav {
     grid-area: navbar;
     z-index: 2;
+    grid-template-columns: auto auto minmax(auto,500px) auto;
 }
 
 .grand-sidebar {
@@ -384,7 +385,7 @@ html[data-theme="dark"] .grand-footer {
 
 /* RESPONSIVE CSS */
 
-@media only screen and (max-width: 770px) {
+@media only screen and (max-width: 768px) {
     :root {
         font-size: 56.25%;
     }
@@ -411,6 +412,8 @@ html[data-theme="dark"] .grand-footer {
         display: block;
     }
 
+
+
     .grand-filter {
         display: block;
         position: absolute;
@@ -422,11 +425,11 @@ html[data-theme="dark"] .grand-footer {
         background-color: var(--COLOR-SIDEBAR-BG);
     }
 
-    .grid-products .navbar-responsive .nav-items .btn {
+    /* .grand-body .navbar-responsive .nav-items .btn {
         display: none;
-    }
+    } */
 
-    .grid-products .navbar-responsive .nav-items .nav-hamburger {
+    .grand-body .navbar-responsive .nav-items .nav-hamburger {
         display: block;
     }
 
