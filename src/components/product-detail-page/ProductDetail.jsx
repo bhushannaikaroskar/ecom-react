@@ -31,7 +31,7 @@ export default function ProductDetail() {
     return product ? (
         <div className="grand-main">
             <div className="grid-col-2 p-1 w-100">
-                <div className="img-container w-75">
+                <div className="img-container">
                     <img
                         className="img"
                         src={product.imageSrc}
@@ -43,7 +43,7 @@ export default function ProductDetail() {
                         onClick={() => wishListHandler(product, setIsLoading)}
                         disabled={isLoading}
                     >
-                        <span class="material-icons btn-icon-lg ">
+                        <span className="material-icons btn-icon-lg ">
                             favorite
                         </span>
                     </button>
@@ -69,10 +69,10 @@ export default function ProductDetail() {
                     </div>
                     <div className="price-container fw-500">
                         <div className="new-price">₹ {price.newPrice}</div>
-                        <div className="old-price">MRP {price.oldPrice}</div>
-                        <div className="discount">
+                        {calculatePercentage(price) !== 0 && <div className="old-price">MRP {price.oldPrice}</div>}
+                        {calculatePercentage(price) !== 0  && <div className="discount">
                             {calculatePercentage(price)}%
-                        </div>
+                        </div>}
                     </div>
 
                     <div className="font-primary p-y-0_5 font-large">
@@ -81,7 +81,7 @@ export default function ProductDetail() {
                     <div className="font-large fw-600 p-y-0_5">
                         Availability :{" "}
                         <span className="font-large font-gray fw-500">
-                            {inStock ? "In Stock" : "Out of Stock"}
+                            {inStock ? "Currently In Stock" : "Currently Out of Stock"}
                         </span>
                     </div>
                     <div className="font-large fw-600 p-y-0_5">
@@ -101,7 +101,7 @@ export default function ProductDetail() {
 
                     <div className="price-cta">
                         <button
-                            class="btn btn-primary w-100 fw-700"
+                            className="btn btn-primary w-100 fw-700"
                             onClick={async () => {
                                 await addToCart(product, setIsLoading);
                                 navigate("/cart")
@@ -111,7 +111,7 @@ export default function ProductDetail() {
                             BUY NOW
                         </button>
                         <button
-                            class="btn btn-outline btn-outline-primary w-100 fw-700"
+                            className="btn btn-outline btn-outline-primary w-100 fw-700"
                             onClick={() => addToCart(product, setIsLoading)}
                             disabled={isLoading}
                         >
