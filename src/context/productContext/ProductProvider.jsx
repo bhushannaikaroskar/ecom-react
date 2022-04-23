@@ -40,8 +40,10 @@ const useFilterData = (stateObj, data) => {
 export default function FilterProvider({ children }) {
     const [state, dispatch] = useReducer(reducer, {...initialState});
     const [productData,setProductData] = useState([])
+    const [searchValue,setSearchValue] = useState("")
     const {fetchData} = useAxios();
-    const filteredData = useFilterData(state,productData)
+    const searchedData = productData.filter((product)=> product.title.toLowerCase().search(searchValue.toLowerCase()) !== -1)
+    const filteredData = useFilterData(state,searchedData)
 
     useEffect(()=>{
         fetchData({
@@ -53,7 +55,7 @@ export default function FilterProvider({ children }) {
     },[])
 
     return (
-        <ProductContext.Provider value={{ state, dispatch,filteredData }}>
+        <ProductContext.Provider value={{ state, dispatch,filteredData,productData,setSearchValue,searchValue }}>
             {children}
         </ProductContext.Provider>
     );

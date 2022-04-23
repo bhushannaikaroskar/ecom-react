@@ -7,14 +7,15 @@ import { useDocumentTitle } from "../../utils";
 
 export default function ProductPage() {
 
-    const {filteredData} = useProductContext()
+    const {filteredData,searchValue} = useProductContext()
     useDocumentTitle("Products")
 
     return (
         <>
             <ProductFilters />
             <main className="grand-main">
-                <h2 className="font-black">Showing All Products</h2>
+                
+                <h2 className="font-black">{searchValue !== "" ?`Search Results for "${searchValue}"`:"Showing All Products"}</h2>
                 <div className="products-list">
                     {filteredData.map((product) => {
                         return <ProductCard key={product._id} productData={product} />;

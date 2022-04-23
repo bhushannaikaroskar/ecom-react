@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useAuth, useCartContext, useTheme, useWishListContext } from "../../context";
+import { useAuth, useCartContext, useProductContext, useTheme, useWishListContext } from "../../context";
 import ShoppingCartIcon, {
     AccountIcon,
     DarkModeIcon,
@@ -15,6 +15,7 @@ export default function NavBar() {
     const { cart } = useCartContext();
     const { auth,logout } = useAuth();
     const {theme,toggle} = useTheme()
+    const {setSearchValue} = useProductContext();
  
     return (
         <nav className="grand-nav navbar navbar-responsive box-shadow-100 p-2_5 p-y-1">
@@ -24,6 +25,7 @@ export default function NavBar() {
                 <NavLink
                     className="btn btn-link-secondary justify-content-start font-color-gray"
                     to="/wishlist"
+                    onClick={()=>setSearchValue("")}
                 >
                     <div className="badge-container flex flex-column">
                         <WishListIcon />
@@ -35,6 +37,7 @@ export default function NavBar() {
                 <NavLink
                     className="btn btn-link-secondary justify-content-start font-color-gray"
                     to="/cart"
+                    onClick={()=>setSearchValue("")}
                 >
                     <div className="badge-container flex flex-column">
                         <ShoppingCartIcon />
@@ -47,6 +50,7 @@ export default function NavBar() {
                     <NavLink
                         className="btn btn-link-secondary justify-content-start font-color-gray"
                         to="/login"
+                        onClick={()=>setSearchValue("")}
                     >
                         <AccountIcon />
                     </NavLink>
@@ -66,6 +70,7 @@ export default function NavBar() {
                 >
                     {theme === "light" ? <DarkModeIcon />:<LightModeIcon/>}
                 </button>
+                
             </div>
         </nav>
     );

@@ -4,6 +4,10 @@ import { useCartContext, useWishListContext } from "../context";
 import { FavoriteIconFilled } from "../icons/icons";
 import { calculatePercentage } from "../utils";
 
+const starColor = {
+    color: "var(--COLOR-WARNING-DARK)"
+}
+
 export default function ProductCard({ productData }) {
     const { _id, title,rating, description, price, imageSrc } = productData;
     const [isLoading, setIsLoading] = useState(false);
@@ -28,12 +32,12 @@ export default function ProductCard({ productData }) {
                 >
                     <FavoriteIconFilled />
                 </button>
-                <div className="card-rating">{rating.toFixed(1)}</div>
+                <div className="card-rating">{rating.toFixed(1)} <span style={starColor}>★</span></div>
                 <img className="card-img" src={imageSrc} alt="card-img" />
             </div>
             <div className="card-content-wrapper">
                 <div className="card-content">
-                    <h2 className="card-title" title={title}>{title}</h2>
+                    <h2 className="card-title" onClick={()=>navigate(`/product/${_id}`)} title={title}>{title}</h2>
                     <div className="card-description">{description}</div>
                 </div>
                 <div className="card-cta">

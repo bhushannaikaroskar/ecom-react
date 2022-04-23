@@ -15,6 +15,7 @@ import {
     PrivateRoute,
     ErrorPage,
 } from "./components";
+import ProductDetail from "./components/product-detail-page/ProductDetail";
 
 function App() {
     const location = useLocation();
@@ -26,6 +27,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/product" element={<ProductPage />} />
+                <Route path="/product/:productId" element={<ProductDetail/>} />
                 <Route element={<PrivateRoute />}>
                     <Route path="/wishlist" element={<WishListPage />} />
                     <Route path="/cart" element={<CartPage />} />
