@@ -1,5 +1,4 @@
 
-
 .profile-container{
     display: grid;
     grid-template-columns: 20rem 1fr;
@@ -20,8 +19,6 @@
     background-color: var(--OFF-WHITE);
 }
 
-
-
 .profile-content{
     grid-area: content;
     padding: 1rem 2rem;
@@ -34,7 +31,6 @@
     flex-direction: column;
     gap: 2rem;
 }
-
 
 .profile-wrapper-content{
     display: grid;
@@ -50,7 +46,6 @@
     max-width: 50rem;
     width: 100%;
 }
-
 
 .input-wrapper .address-input{
     background-color: var(--LIGHT-GREY);

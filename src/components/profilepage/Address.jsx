@@ -90,8 +90,6 @@ export default function Address() {
         setAddress(initialState)
     };
 
-
-
     return (
         <div>
             <h2 >Address</h2>

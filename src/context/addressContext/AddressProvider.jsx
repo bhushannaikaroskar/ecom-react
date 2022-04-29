@@ -6,10 +6,7 @@ import { useTheme } from "../themeContext/ThemeProvider";
 
 const AddressContext = createContext();
 
-
-
 export default function AddressProvider({ children }) {
-
     const [addressList,setAddressList] = useState([])
     const {auth} = useAuth()
     const {theme} = useTheme();

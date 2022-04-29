@@ -2,11 +2,8 @@ import React from "react";
 import { useAuth } from "../../context";
 
 export default function Profile() {
-    const {
-        auth: {
-            user: { email, firstName, lastName },
-        },
-    } = useAuth();
+    const {auth} = useAuth();
+    const {user: { email, firstName, lastName }} = auth
 
     return (
         <div className="profile-wrapper">

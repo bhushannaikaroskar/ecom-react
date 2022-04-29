@@ -102,7 +102,7 @@ export const removeAddressHandler = function (schema, request) {
   /**
  * This handler handles updating items to user's address.
  * send POST Request at /api/user/address/:addressId
- * body contains {action} (whose 'type' can be increment or decrement)
+ * body contains {address} 
  * */
 
 export const updateAddressHandler = function (schema, request) {
