@@ -26,6 +26,7 @@ import {
 import {
   getAddressHandler,
   addAddressHandler,
+  updateAddressHandler,
   removeAddressHandler
 } from "./backend/controllers/AddressController"
 import { categories } from "./backend/db/categories";
@@ -96,6 +97,7 @@ export function makeServer({ environment = "development" } = {}) {
       // address routes (private)
       this.get("/user/address", getAddressHandler.bind(this));
       this.post("/user/address", addAddressHandler.bind(this));
+      this.post("/user/address/:addressId", updateAddressHandler.bind(this));
       this.delete(
         "/user/address/:addressId",
         removeAddressHandler.bind(this)

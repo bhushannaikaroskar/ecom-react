@@ -43,7 +43,8 @@ export default function Address() {
     const [address,setAddress] = useState(initialState);
     const [errors,setErrors] = useState(errorObject);
     const [isModal, setIsModal] = useState(false);
-    const { addressList, addAddress, removeAddress } = useAddress();
+    let [isUpdate,setIsUpdate] = useState(false);
+    const { addressList, addAddress,updateAddress, removeAddress } = useAddress();
 
     const toggleModal = () => {
         setIsModal((s) => !s);
@@ -80,10 +81,16 @@ export default function Address() {
             setErrors(errorObject)
         }
 
-        addAddress(address)
+        if(isUpdate){
+            updateAddress(address)
+        }else{
+           addAddress(address)
+        }
         toggleModal();
         setAddress(initialState)
     };
+
+
 
     return (
         <div>
@@ -98,14 +105,28 @@ export default function Address() {
                         <p>Pin: {address.pinCode}</p> 
                         <p className="p-y-0_5"><span class="fw-600">Phone Number:</span> {address.phoneNumber}</p>
                         <div className="address-cta">
-                            <button className="btn btn-link-primary">Change Address</button>
+                            <button 
+                                className="btn btn-link-primary" 
+                                onClick={()=>{
+                                    setIsUpdate(true);
+                                    setAddress(address) 
+                                    toggleModal();
+                                }}
+                            >
+                                Change Address
+                            </button>
                             <button className="btn btn-link-secondary" onClick={()=>removeAddress(address._id)}> remove</button>
                         </div>
                     </div>
                 );
             })}
             </div>
-            <button className="btn btn-primary" onClick={toggleModal}>Add address </button>
+            <button 
+                className="btn btn-primary" 
+                onClick={()=>{
+                    setIsUpdate(false);
+                    toggleModal()
+                }}>Add address </button>
             <div className={`modal-container modal-center ${isModal?"modal-active":""}`}>
                 <div className="card text-card address-form">
                     <div className="card-content-wrapper p-2">
@@ -129,7 +150,8 @@ export default function Address() {
                         </div>
                         <div className="card-cta w-100">
                             <div className="card-buttons w-100 justify-content-center">
-                                <button className="btn btn-primary card-btn" onClick={addressHandler}>Add</button><button
+                                <button className="btn btn-primary card-btn" onClick={addressHandler}>Add</button>
+                                <button
                                     className="btn btn-outline btn-outline-primary card-btn"
                                     onClick={addDummyAddress}
                                 >

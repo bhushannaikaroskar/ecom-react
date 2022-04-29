@@ -43,6 +43,21 @@ export default function AddressProvider({ children }) {
         })
     }
 
+    const updateAddress = (address)=>{
+        axios.request({
+            method: "post",
+            url: `/api/user/address/${address._id}`,
+            headers: { authorization: auth.authToken },
+            data: {
+                address
+            }
+        }).then(res => {
+            setAddressList(res.data.address)
+        }).catch(err=>{
+            errorToast("Failed to update address",theme)
+        })
+    }
+
     useEffect(()=>{
         if(auth.isAuthenticated){
             axios.request({
@@ -60,7 +75,7 @@ export default function AddressProvider({ children }) {
     },[auth])
 
     return (
-        <AddressContext.Provider value={{addressList,removeAddress,addAddress}}>{children}</AddressContext.Provider>
+        <AddressContext.Provider value={{addressList,removeAddress,addAddress,updateAddress}}>{children}</AddressContext.Provider>
     );
 }
 

@@ -31,7 +31,7 @@ import { v4 as uuid } from "uuid";
   /**
  * This handler handles adding addresses to user's address.
  * send POST Request at /api/user/address
- * body contains {product}
+ * body contains {address}
  * */
 
   export const addAddressHandler = function (schema, request) {
@@ -98,3 +98,43 @@ export const removeAddressHandler = function (schema, request) {
       );
     }
   };
+
+  /**
+ * This handler handles updating items to user's address.
+ * send POST Request at /api/user/address/:addressId
+ * body contains {action} (whose 'type' can be increment or decrement)
+ * */
+
+export const updateAddressHandler = function (schema, request) {
+  const addressId = request.params.addressId;
+  const userId = requiresAuth.call(this, request);
+  try {
+    if (!userId) {
+      return new Response(
+        404,
+        {},
+        {
+          errors: ["The email you entered is not Registered. Not Found error"],
+        }
+      );
+    }
+    let userAddress = schema.users.findBy({ _id: userId }).address;
+    const { address:updatedAddress } = JSON.parse(request.requestBody);
+    userAddress = userAddress.map((item) => {
+      if (item._id === addressId) {
+        item = {...item,...updatedAddress}
+      }
+      return item;
+    })
+    this.db.users.update({ _id: userId }, { address: userAddress });
+    return new Response(200, {}, { address: userAddress });
+  } catch (error) {
+    return new Response(
+      500,
+      {},
+      {
+        error,
+      }
+    );
+  }
+};
