@@ -17,6 +17,7 @@
 :root[data-theme=dark]{
     
     --COLOR-ALPHA-WHITE: #000000aa;
+    --COLOR-BLACK-ALPHA: #ffffff22
 }
 
 html {
@@ -66,7 +67,7 @@ html[data-theme="dark"] .auth-container {
 .grand-nav {
     grid-area: navbar;
     z-index: 2;
-    grid-template-columns: auto auto minmax(auto,500px) auto;
+    grid-template-columns: auto minmax(auto,600px) minmax(auto,500px) auto;
 }
 
 .grand-sidebar {

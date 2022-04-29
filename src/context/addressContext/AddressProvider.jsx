@@ -23,17 +23,13 @@ export default function AddressProvider({ children }) {
     //     }).then(res => setAddressList(res.data.address))
     // }
 
-    const addAddress = ()=>{
+    const addAddress = (address)=>{
         axios.request({
             method: "post",
             url: `/api/user/address`,
             headers: { authorization: auth.authToken },
             data: {
-                address:{
-                    name:"dmmy anme",
-                    city:"Mumbai",
-                    State:"Maharashtra"
-                }
+                address
             }
         }).then(res => setAddressList(res.data.address))
     }

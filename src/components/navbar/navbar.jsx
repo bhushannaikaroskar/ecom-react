@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useAuth, useCartContext, useProductContext, useTheme, useWishListContext } from "../../context";
 import ShoppingCartIcon, {
     AccountIcon,
@@ -20,6 +20,9 @@ export default function NavBar() {
     return (
         <nav className="grand-nav navbar navbar-responsive box-shadow-100 p-2_5 p-y-1">
             <Logo />
+            <NavLink style={{minWidth:"100%" , maxWidth:"800px"}} className="btn btn-link-secondary justify-content-start font-large font-dark-gray" to="/product">
+                Shop
+            </NavLink>
             <SearchBar />
             <div className="nav-items">
                 <NavLink
@@ -57,6 +60,7 @@ export default function NavBar() {
 
                     {auth.isAuthenticated && (
                         <div className="account-modal">
+                            <Link class="btn btn-link-secondary" to="/profile"> Profile </Link>
                             <button className="btn btn-link-secondary font-error" onClick={logout}>
                                 Logout
                             </button>

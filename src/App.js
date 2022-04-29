@@ -14,6 +14,10 @@ import {
     SignUpPage,
     PrivateRoute,
     ErrorPage,
+    ProfilePage,
+    Profile,
+    Orders,
+    Address,
 } from "./components";
 import ProductDetail from "./components/product-detail-page/ProductDetail";
 
@@ -27,10 +31,15 @@ function App() {
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/product" element={<ProductPage />} />
-                <Route path="/product/:productId" element={<ProductDetail/>} />
+                <Route path="/product/:productId" element={<ProductDetail />} />
                 <Route element={<PrivateRoute />}>
                     <Route path="/wishlist" element={<WishListPage />} />
                     <Route path="/cart" element={<CartPage />} />
+                    <Route path="/profile" element={<ProfilePage />}>
+                        <Route path="" element={<Profile />} />
+                        <Route path="orders" element={<Orders />} />
+                        <Route path="address" element={<Address />} />
+                    </Route>
                 </Route>
                 <Route element={<RestrictedRoute />}>
                     <Route path="/login" element={<LoginPage />} />

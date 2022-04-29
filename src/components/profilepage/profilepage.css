@@ -1,0 +1,84 @@
+
+
+.profile-container{
+    display: grid;
+    grid-template-columns: 20rem 1fr;
+    grid-template-areas: "options content";
+    max-width: 900px;
+    margin: auto;
+}
+
+.profile-options{
+    grid-area: options;
+    /* border-right: 1px solid var(--DARK-GREY); */
+}
+
+.profile-options a{
+    margin-right: 2rem;
+    padding: 2rem;
+    font-size: 1.8rem;
+    background-color: var(--OFF-WHITE);
+}
+
+
+
+.profile-content{
+    grid-area: content;
+    padding: 1rem 2rem;
+}
+
+/* PROFILE */
+
+.profile-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+
+.profile-wrapper-content{
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+    padding:1rem 0 ;
+}
+
+/* ADDRESS */
+
+.address-form{
+    display: flex;
+    flex-direction: column;
+    max-width: 50rem;
+    width: 100%;
+}
+
+
+.input-wrapper .address-input{
+    background-color: var(--LIGHT-GREY);
+    outline: 0;
+    padding: 1rem;
+    border-radius: 3px;
+}
+
+.address-list{
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.address-item{
+    margin: 2rem 0;
+    font-size: 1.6rem;
+    font-weight: 500;
+    max-width: 300px;
+}
+
+.address-cta{
+    display: flex;
+    gap:2rem;
+    padding-top:1rem;
+}
+
+.address-cta .btn{
+    padding: 5px 0;
+}
+
