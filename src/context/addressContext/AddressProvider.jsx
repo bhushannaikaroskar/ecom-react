@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { createContext, useContext, useEffect, useState } from "react";
-import useAxios from "../../utils/custom-hooks/useAxios";
 import { useAuth } from "../authContext/AuthProvider";
+import { errorToast} from "../../utils";
+import { useTheme } from "../themeContext/ThemeProvider";
 
 const AddressContext = createContext();
 
@@ -10,18 +11,8 @@ const AddressContext = createContext();
 export default function AddressProvider({ children }) {
 
     const [addressList,setAddressList] = useState([])
-    const {fetchData} = useAxios();
     const {auth} = useAuth()
-
-    // const buttonHandler = ()=>{
-    //     fetchData({
-    //         method: "get",
-    //         url: `/api/user/address`,
-    //         headers: { authorization: auth.authToken },
-    //         data: {
-    //         },
-    //     }).then(res => setAddressList(res.data.address))
-    // }
+    const {theme} = useTheme();
 
     const addAddress = (address)=>{
         axios.request({
@@ -31,7 +22,11 @@ export default function AddressProvider({ children }) {
             data: {
                 address
             }
-        }).then(res => setAddressList(res.data.address))
+        }).then(res => {
+            setAddressList(res.data.address)
+        }).catch(err=>{
+            errorToast("Failed to add address",theme)
+        })
     }
 
     const removeAddress = (addressId) =>{
@@ -41,7 +36,11 @@ export default function AddressProvider({ children }) {
             headers: { authorization: auth.authToken },
             data: {
             }
-        }).then(res => setAddressList(res.data.address))
+        }).then(res => {
+            setAddressList(res.data.address)
+        }).catch(err=>{
+            errorToast("Failed to remove address",theme)
+        })
     }
 
     useEffect(()=>{
@@ -52,9 +51,13 @@ export default function AddressProvider({ children }) {
                 headers: { authorization: auth.authToken },
                 data: {
                 },
-            }).then(res => console.log(res))
+            }).then(res => {
+                setAddressList(res.data.address)
+            }).catch(err=>{
+                errorToast("Failed to fetch address",theme)
+            })
         }
-    },[])
+    },[auth])
 
     return (
         <AddressContext.Provider value={{addressList,removeAddress,addAddress}}>{children}</AddressContext.Provider>
