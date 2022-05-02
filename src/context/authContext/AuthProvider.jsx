@@ -8,6 +8,11 @@ const AuthContext = createContext();
 const initialAuthState = {
     isAuthenticated: false,
     authToken: "",
+    user:{
+        firstName:"",
+        lastName:"",
+        email:"",
+    }
 };
 
 export default function AuthProvider({ children }) {
@@ -17,10 +22,15 @@ export default function AuthProvider({ children }) {
     const authReducer = (state, action) => {
         switch (action.type) {
             case "VERIFIED":
+                console.log(action.payload.foundUser)
+                const {email,firstName,lastName,_id} = action.payload.foundUser;
+                console.log(email,firstName,lastName,_id)
                 return {
                     ...state,
                     isAuthenticated: true,
+                    user:{email,firstName,lastName,_id},
                     authToken: action.payload.token,
+
                 };
             case "RESET":
                 return { ...initialAuthState };
@@ -45,7 +55,7 @@ export default function AuthProvider({ children }) {
             if (res.status !== 404 && res.status !== 401) {
                 dispatchAuth({
                     type: "VERIFIED",
-                    payload: { token: res.data.encodedToken },
+                    payload: { token: res.data.encodedToken,...res.data },
                 });
                 successToast("Logged in Successfully",theme)
             } else {
