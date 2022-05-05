@@ -1,9 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useCartContext } from "../../context";
 
 export default function Checkout() {
 
     const {cart} = useCartContext()
+    const navigate = useNavigate();
 
     const calculateTotalPrice = (cart)=>{
         let total = 0;
@@ -22,7 +24,7 @@ export default function Checkout() {
     return (
         <div className="order-checkout ">
             <div className="order-header">
-                <h2 className="fw-600 p-y-1 ">Order Summary</h2>
+                <h2 className="fw-600 p-y-1 ">Cart Summary</h2>
             </div>
             <hr />
             <ul className="list p-y-1">
@@ -54,8 +56,8 @@ export default function Checkout() {
                 <h3 className="fw-600">Rs {totalPrice + deliveryCharge } </h3>
             </div>
             <div className="flex p-y-2_5">
-                <button className="btn btn-primary flex-grow-1">
-                    Place Order
+                <button className="btn btn-primary flex-grow-1" onClick={()=>navigate("/checkout")}>
+                    Checkout
                 </button>
             </div>
         </div>

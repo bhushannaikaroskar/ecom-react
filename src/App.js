@@ -18,6 +18,7 @@ import {
     Profile,
     Orders,
     Address,
+    CheckoutPage,
 } from "./components";
 import ProductDetail from "./components/product-detail-page/ProductDetail";
 
@@ -35,6 +36,7 @@ function App() {
                 <Route element={<PrivateRoute />}>
                     <Route path="/wishlist" element={<WishListPage />} />
                     <Route path="/cart" element={<CartPage />} />
+                    <Route path="/checkout" element={<CheckoutPage />} />
                     <Route path="/profile" element={<ProfilePage />}>
                         <Route path="" element={<Profile />} />
                         <Route path="orders" element={<Orders />} />

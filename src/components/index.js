@@ -10,8 +10,9 @@ import RestrictedRoute from "./RestrictedRoute"
 import PrivateRoute from "./PrivateRoute"
 import ErrorPage from "./errorpage/ErrorPage";
 import ProfilePage from "./profilepage/ProfilePage";
+import CheckoutPage from "./checkout/CheckoutPage";
 export {LoginPage,SignUpPage} from "./authPage" 
 export * from "./profilepage"
 
 
-export {Footer,HomePage,NavBar,ProductPage,WishListPage,CartPage,RestrictedRoute,PrivateRoute,ErrorPage,ProfilePage}
+export {Footer,HomePage,NavBar,ProductPage,WishListPage,CartPage,RestrictedRoute,PrivateRoute,ErrorPage,ProfilePage,CheckoutPage}
