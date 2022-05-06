@@ -3,7 +3,7 @@ import React from "react";
 export default function OrderItemCard({product}) {
     return (
         <div className="order-card">
-            <img src={product.imageSrc} alt="" className="card-img" />
+            <img src={product.imageSrc} alt="" className="order-card-img" />
             <div className="card-content-wrapper">
                 <div className="order-content">
                     <h4 className="order-title">{product.title}</h4>

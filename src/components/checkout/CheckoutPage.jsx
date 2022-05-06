@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { grandLogo } from "../../assets";
 import { useAddress, useAuth, useCartContext } from "../../context";
+import { errorToast, successToast } from "../../utils";
 import "./checkout.css";
 import OrderItemCard from "./OrderItemCard";
 
@@ -49,6 +50,60 @@ export default function CheckoutPage() {
     const [totalPrice,discount] = calculateTotalPrice(cart);
     const deliveryCharge = (totalPrice>=500 || cart.length===0)?0:49;
 
+    const loadScript = (src) => {
+        return new Promise((resolve)=>{
+            const script = document.createElement("script")
+            script.src = "https://checkout.razorpay.com/v1/checkout.js"
+            script.onload = ()=>{
+                resolve(true);
+            }
+            script.onerror = ()=>{
+                resolve(false);
+            }
+            document.body.appendChild(script);
+        })
+    }
+
+    useEffect(()=>{
+        loadScript();
+    },[])
+
+    const makePayment = async ()=>{
+        if(!selectedAddress){
+            errorToast("Address not selected")
+            return
+        }
+
+        if(cart.length === 0){
+            errorToast("Add items to cart")
+            return
+
+        }
+
+        const options = {
+            key: process.env.REACT_APP_RAZORPAY_KEY_ID,
+            image: grandLogo,
+            name: "StarCart",
+            description: "little bird-tee store",
+            currency: "INR",
+            amount: (totalPrice + deliveryCharge - coupon.couponDiscount) * 100,
+            handler: function (response) {
+              if (response && response.razorpay_payment_id) {
+                successToast("Order placed successfully")
+              }
+            },
+            prefill: {
+              name: selectedAddress.fullName,
+              email: auth.user.email,
+              contact: selectedAddress.phoneNumber,
+              method: "netbanking",
+            },
+        };
+
+        const paymentObject = new window.Razorpay(options);
+        paymentObject.open();
+    }
+
     return (
         <main className="grand-main">
             <h1 className="text-align-center font-black">My Cart </h1>
@@ -81,12 +136,12 @@ export default function CheckoutPage() {
                         <>
                         <div className="accordian-address-list">
                         {addressList.map((address)=>{
-                            return <div className="accordian-address-item" onClick={()=>setSelectedAddress(address._id)}>
+                            return <div className="accordian-address-item" onClick={()=>setSelectedAddress(address)}>
                             <h3 className="p-y-1">{address.fullName}</h3>
                             <p>{address.streetAddress}</p>
                             <p>{address.city}, {address.state}, {address.pinCode}</p> 
                             <p className="p-y-0_5"><span class="fw-600">Phone Number:</span> {address.phoneNumber}</p>
-                            {selectedAddress===address._id && <span className="material-icons accordian-check">
+                            {selectedAddress?._id===address._id && <span className="material-icons accordian-check">
                                 check
                             </span>}
                         </div>
@@ -151,7 +206,7 @@ export default function CheckoutPage() {
                         <h3 className="fw-600">Rs {totalPrice + deliveryCharge - coupon.couponDiscount} </h3>
                     </div>
                     <div className="flex p-y-2_5">
-                        <button className="btn btn-primary flex-grow-1">
+                        <button className="btn btn-primary flex-grow-1" onClick={makePayment}>
                             Place Order
                         </button>
                     </div>
