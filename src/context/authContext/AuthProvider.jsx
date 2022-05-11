@@ -20,10 +20,22 @@ export default function AuthProvider({ children }) {
     const {theme} = useTheme()
 
     const authReducer = (state, action) => {
+        let email,firstName,lastName,_id;
         switch (action.type) {
             case "VERIFIED":
-                console.log(action.payload.foundUser)
-                const {email,firstName,lastName,_id} = action.payload.foundUser;
+                console.log(action.payload.foundUser);
+                ({email,firstName,lastName,_id} = action.payload.foundUser);
+                console.log(email,firstName,lastName,_id)
+                return {
+                    ...state,
+                    isAuthenticated: true,
+                    user:{email,firstName,lastName,_id},
+                    authToken: action.payload.token,
+
+                };
+            case "SIGNUP_VERIFIED":
+                // console.log(action.payload.foundUser)
+                ({email,firstName,lastName,_id} = action.payload.createdUser);
                 console.log(email,firstName,lastName,_id)
                 return {
                     ...state,
@@ -76,8 +88,8 @@ export default function AuthProvider({ children }) {
         }).then((res) => {
             if (res.status !== 422) {
                 dispatchAuth({
-                    type: "VERIFIED",
-                    payload: { token: res.data.encodedToken },
+                    type: "SIGNUP_VERIFIED",
+                    payload: { token: res.data.encodedToken,...res.data },
                 });
                 successToast("Signin Successful",theme)
             } else {
