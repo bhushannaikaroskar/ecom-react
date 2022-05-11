@@ -32,6 +32,7 @@ import {
 import { categories } from "./backend/db/categories";
 import { products } from "./backend/db/products";
 import { users } from "./backend/db/users";
+import { addOrderHandler, getOrdersHandler } from "./backend/controllers/OrderController";
 
 export function makeServer({ environment = "development" } = {}) {
   return new Server({
@@ -57,7 +58,7 @@ export function makeServer({ environment = "development" } = {}) {
       });
 
       users.forEach((item) =>
-        server.create("user", { ...item, cart: [], wishlist: [], address:[] })
+        server.create("user", { ...item, cart: [], wishlist: [], address:[],orders:[] })
       );
 
       categories.forEach((item) => server.create("category", { ...item }));
@@ -102,8 +103,9 @@ export function makeServer({ environment = "development" } = {}) {
         "/user/address/:addressId",
         removeAddressHandler.bind(this)
       );
-
-
+      
+      this.get("/user/orders", getOrdersHandler.bind(this));
+      this.post("/user/orders", addOrderHandler.bind(this));
     },
   });
 }

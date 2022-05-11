@@ -149,6 +149,7 @@ export default function CartProvider({ children }) {
         <CartContext.Provider
             value={{
                 cart,
+                fetchCart,
                 setCart,
                 addToCart,
                 incrementCount,

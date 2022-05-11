@@ -6,12 +6,14 @@ import CartProvider from "./cartContext/CartProvider";
 import AuthProvider from "./authContext/AuthProvider";
 import ThemeProvider from "./themeContext/ThemeProvider";
 import AddressProvider from "./addressContext/AddressProvider";
+import OrdersProvider from "./OrdersProvider";
 export {useWishListContext} from "./wishlistContext/WishListProvider"
 export {useProductContext} from "./productContext/ProductProvider";
 export {useCartContext} from "./cartContext/CartProvider"
 export {useAuth} from "./authContext/AuthProvider"
 export {useTheme} from "./themeContext/ThemeProvider"
 export {useAddress} from "./addressContext/AddressProvider"
+export {useOrders} from "./OrdersProvider"
 
 
 export {FilterProvider,WishListProvider,CartProvider,AuthProvider,ThemeProvider,AddressProvider}
