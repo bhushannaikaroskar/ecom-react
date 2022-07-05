@@ -48,8 +48,6 @@ export default function Orders() {
         })}
         </div>
       </div>
-        // {orders.map((order)=>{
-        // return <div>{order.paymentId}</div>})}
         })}
     </div>
   )

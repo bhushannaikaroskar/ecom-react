@@ -49,8 +49,6 @@ export default function OrdersProvider({children}) {
             }).then(res => {
                 console.log(res)
                 setOrders([...res.data.orders])
-                navigate("/profile/orders")
-
             }).catch(err=>{
                 errorToast("Failed to add orders",theme)
             })

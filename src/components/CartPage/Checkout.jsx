@@ -41,15 +41,6 @@ export default function Checkout() {
                     <p className="fw-500">Rs {deliveryCharge}</p>
                 </li>
             </ul>
-            <div>
-                <div className="input-wrapper">
-                    <label className="input-label">COUPON CODE:</label>
-                    <input
-                        type="text"
-                        className="input-field input-color-success coupon"
-                    />
-                </div>
-            </div>
             <hr className="margin-2" />
             <div className="order-item p-y-1">
                 <h3 className="fw-600">Total Amount</h3>

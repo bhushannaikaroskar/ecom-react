@@ -3,7 +3,7 @@
     display: grid;
     grid-template-columns: 20rem 1fr;
     grid-template-areas: "options content";
-    max-width: 90rem;
+    max-width: 100rem;
     margin: auto;
 }
 
@@ -22,6 +22,7 @@
 .profile-content{
     grid-area: content;
     padding: 1rem 2rem;
+    min-width: 50rem
 }
 
 /* PROFILE */

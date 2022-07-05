@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCartContext, useWishListContext } from "../context";
+import { useAuth, useCartContext, useWishListContext } from "../context";
 import { FavoriteIconFilled } from "../icons/icons";
 import { calculatePercentage } from "../utils";
 
@@ -13,6 +13,7 @@ export default function ProductCard({ productData }) {
     const [isLoading, setIsLoading] = useState(false);
     const { wishList, wishListHandler } = useWishListContext();
     const { addToCart } = useCartContext();
+    const {auth} = useAuth();
     const navigate = useNavigate();
 
     const isPresent = wishList.find((p) => p._id === _id);
@@ -59,7 +60,10 @@ export default function ProductCard({ productData }) {
                             className="btn btn-default card-btn"
                             onClick={async () => {
                                 await addToCart(productData, setIsLoading);
-                                navigate("/cart");
+                                if(auth.isAuthenticated){
+                                    console.log(auth)
+                                    navigate("/cart");
+                                }
                             }}
                             disabled={isLoading}
                         >

@@ -16,7 +16,7 @@ export default function PrivateRoute() {
     useEffect(()=>{
         if(!auth.isAuthenticated){
             redirect()
-            infoToast("Login to use wishlist",theme)
+            infoToast("Login to use wishlist and cart",theme)
         }
     })
 

@@ -292,6 +292,7 @@ html[data-theme="dark"] .grand-footer {
     min-width: 30rem;
     border: 1px solid var(--LIGHT-GREY);
     margin: 0 2rem;
+    max-width: 35rem;
 }
 
 .order-item {

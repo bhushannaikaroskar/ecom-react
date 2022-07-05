@@ -231,6 +231,8 @@ export default function CheckoutPage() {
                         )}
                     </ul>
                     <div>
+                        
+                <div className="font-small">Use coupon code <b className="font-primary">FIRSTBUY</b> to avail Rs 200 discount and <b className="font-primary">CHESS15</b> to avail 15% discount</div>
                         <div className="input-wrapper">
                             <label className="input-label">COUPON CODE:</label>
                             <input
