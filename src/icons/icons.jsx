@@ -42,7 +42,7 @@ export function TrashIcon() {
 
 export function SearchIcon() {
     return (
-        <span className="material-icons font-x-large nav-search-icon">
+        <span className="material-icons font-x-large">
             search
         </span>
     );
