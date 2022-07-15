@@ -23,9 +23,7 @@ export default function AuthProvider({ children }) {
         let email,firstName,lastName,_id;
         switch (action.type) {
             case "VERIFIED":
-                console.log(action.payload.foundUser);
                 ({email,firstName,lastName,_id} = action.payload.foundUser);
-                console.log(email,firstName,lastName,_id)
                 return {
                     ...state,
                     isAuthenticated: true,
@@ -34,9 +32,7 @@ export default function AuthProvider({ children }) {
 
                 };
             case "SIGNUP_VERIFIED":
-                // console.log(action.payload.foundUser)
                 ({email,firstName,lastName,_id} = action.payload.createdUser);
-                console.log(email,firstName,lastName,_id)
                 return {
                     ...state,
                     isAuthenticated: true,
@@ -63,7 +59,6 @@ export default function AuthProvider({ children }) {
                 password: password,
             },
         }).then((res) => {
-            console.log(res);
             if (res.status !== 404 && res.status !== 401) {
                 dispatchAuth({
                     type: "VERIFIED",

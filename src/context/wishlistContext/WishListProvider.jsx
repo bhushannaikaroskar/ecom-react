@@ -21,7 +21,6 @@ export default function WishListProvider({ children }) {
             headers: { authorization: auth.authToken },
             data: {},
         }).then((res) => {
-            console.log(res);
             setWishList(res.data.wishlist);
         });
     };
@@ -40,7 +39,6 @@ export default function WishListProvider({ children }) {
                 product: product,
             },
         }).then((res) => {
-            console.log("add to wishlist called",res)
             if (res.status !== 404 && res.status !== 500) {
                 setWishList(res.data.wishlist);
                 successToast("Item added to wishlist",theme)
@@ -90,10 +88,8 @@ export default function WishListProvider({ children }) {
 
     useEffect(() => {
         if (auth.isAuthenticated) {
-            console.log("wishlist is available");
             fetchWishList();
         } else {
-            console.log("not available wishlist");
             setWishList([]);
         }
     }, [auth]);

@@ -17,7 +17,6 @@ export default function CartProvider({ children }) {
     const incrementCount = async (product, setLoader = () => {}) => {
         setLoader(true);
         let isError = false;
-        console.log("incrementCount called");
         await fetchData({
             method: "post",
             url: `/api/user/cart/${product.id}`,
@@ -34,7 +33,7 @@ export default function CartProvider({ children }) {
                     isError = true;
                 }
             })
-            .catch((err) => console.log(err.response));
+            .catch((error) => errorToast("Some error occured while updating quantity",theme));
         setLoader(false);
         if (isError) {
             navigate("/login");
@@ -55,7 +54,6 @@ export default function CartProvider({ children }) {
                     product,
                 },
             }).then((res) => {
-                console.log(res);
                 if (res.status !== 404 && res.status !== 500) {
                     setCart(res.data.cart);
                     successToast("Item added to cart",theme)
@@ -89,7 +87,8 @@ export default function CartProvider({ children }) {
                     isError = true;
                 }
             })
-            .catch((err) => console.log(err.response));
+            .catch((error) => 
+            errorToast("Some error occured while removing product",theme));
 
         setLoader(false);
         if (isError) {
@@ -112,13 +111,13 @@ export default function CartProvider({ children }) {
                     },
                 },
             }).then((res) => {
-                    if (res.status !== 404 && res.status !== 500) {
-                        setCart(res.data.cart);
-                    } else {
-                        isError = true;
-                    }
-                })
-                .catch((err) => console.log(err.response));
+                if (res.status !== 404 && res.status !== 500) {
+                    setCart(res.data.cart);
+                } else {
+                    isError = true;
+                }
+            })
+            .catch((error) => errorToast("Some error occured while updating quantity",theme));
         } else {
             removeFromCart(product);
         }

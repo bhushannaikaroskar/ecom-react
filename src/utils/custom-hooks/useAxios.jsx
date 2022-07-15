@@ -18,7 +18,6 @@ export default function useAxios() {
             setError("")
 
         } catch (err) {
-            console.log(err.response)
             isError=true;
             errorData = err;
             setResponse("");
