@@ -184,7 +184,7 @@ export default function ProductFilters() {
                                     }
                                     checked={rating===4}
                                 />{" "}
-                                4 star
+                                4 star & above
                             </label>
                         </li>
                         <li className="list-item p-x-0">
@@ -197,7 +197,7 @@ export default function ProductFilters() {
                                     }
                                     checked={rating===3}
                                 />{" "}
-                                3 star
+                                3 star & above
                             </label>
                         </li>
                         <li className="list-item p-x-0">
@@ -210,7 +210,7 @@ export default function ProductFilters() {
                                     }
                                     checked={rating===2}
                                 />{" "}
-                                2 star
+                                2 star & above
                             </label>
                         </li>
                         <li className="list-item p-x-0">
@@ -223,7 +223,7 @@ export default function ProductFilters() {
                                     }
                                     checked={rating===1}
                                 />{" "}
-                                1 star
+                                1 star & above
                             </label>
                         </li>
                     </ul>

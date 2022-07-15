@@ -21,12 +21,9 @@ const calculateTotalPrice = (cart) => {
 const coupons = { FIRSTBUY: 200, CHESS15: (price) => Math.floor(price * 0.15) };
 
 const applyCoupon = (coupon, price, setBoolean = () => {}) => {
-    console.log(coupons[coupon]);
     if (coupons[coupon]) {
-        console.log(typeof coupons[coupon]);
         setBoolean(coupon);
         if (typeof coupons[coupon] === "function") {
-            console.log("inside if");
             const cb = coupons[coupon];
             return cb(price);
         } else {
@@ -90,7 +87,6 @@ export default function CheckoutPage() {
             amount: (totalPrice + deliveryCharge - coupon.couponDiscount) * 100,
             handler: function (response) {
                 if (response && response.razorpay_payment_id) {
-                    console.log(response);
                     const order = {
                         paymentId: response.razorpay_payment_id,
                         list: [...cart],
@@ -238,8 +234,9 @@ export default function CheckoutPage() {
                             <input
                                 type="text"
                                 className="input-field input-color-success coupon"
-                                onChange={(e) => setCouponInput(e.target.value)}
+                                onChange={(e) => setCouponInput(e.target.value.toUpperCase())}
                             />
+                            <br />
                             {coupon.couponCode && (
                                 <div className="coupon-tag">
                                     {coupon.couponCode}
@@ -272,7 +269,7 @@ export default function CheckoutPage() {
                                             couponDiscount: resultPrice,
                                         }));
                                     } else {
-                                        console.log("wrong coupon");
+                                        errorToast("Coupon entered is invalid")
                                     }
                                 }}
                             >

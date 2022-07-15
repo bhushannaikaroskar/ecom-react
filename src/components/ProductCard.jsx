@@ -61,7 +61,6 @@ export default function ProductCard({ productData }) {
                             onClick={async () => {
                                 await addToCart(productData, setIsLoading);
                                 if(auth.isAuthenticated){
-                                    console.log(auth)
                                     navigate("/cart");
                                 }
                             }}
