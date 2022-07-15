@@ -123,7 +123,7 @@ export default function ProductDetail() {
             <h1 className="p-1">Similar Products</h1>
             <div className="similar-products p-1">
                 {recommendedProducts.map((product) => {
-                    return <ProductCard productData={product} />;
+                    return <ProductCard key={product._id} productData={product} />;
                 })}
             </div>
         </div>

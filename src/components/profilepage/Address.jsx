@@ -96,12 +96,12 @@ export default function Address() {
             <div className="address-list">
             {addressList.map((address) => {
                 return (
-                    <div className="address-item">
+                    <div key={address._id} className="address-item">
                         <h3 className="p-y-1">{address.fullName}</h3>
                         <p>{address.streetAddress}</p>
                         <p>{address.city}, {address.state}</p> 
                         <p>Pin: {address.pinCode}</p> 
-                        <p className="p-y-0_5"><span class="fw-600">Phone Number:</span> {address.phoneNumber}</p>
+                        <p className="p-y-0_5"><span className="fw-600">Phone Number:</span> {address.phoneNumber}</p>
                         <div className="address-cta">
                             <button 
                                 className="btn btn-link-primary" 
@@ -132,8 +132,8 @@ export default function Address() {
                             <h2 className="card-title"> Add address</h2>
                             <div className="card-description text-card-description p-1">
                                 {namesArray.map((input)=>{
-                                    return <div className="input-wrapper input-width-100">
-                                    <label for="name" className="input-label ">{input[1]}:</label>
+                                    return <div key={input[0]} className="input-wrapper input-width-100">
+                                    <label htmlFor="name" className="input-label ">{input[1]}:</label>
                                     <input
                                         id="name"
                                         value={address[input[0]]}

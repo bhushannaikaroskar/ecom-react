@@ -64,6 +64,9 @@ export default function CheckoutPage() {
     };
 
     useEffect(() => {
+        if(cart.length <= 0){
+            navigate("/cart")
+        }
         loadScript();
     }, []);
 
@@ -134,7 +137,7 @@ export default function CheckoutPage() {
                     {accordian === "order" && (
                         <div className="accordian-order-list">
                             {cart.map((product) => {
-                                return <OrderItemCard product={product} />;
+                                return <OrderItemCard key={product._id} product={product} />;
                             })}
                         </div>
                     )}
@@ -158,7 +161,7 @@ export default function CheckoutPage() {
                             <div className="accordian-address-list">
                                 {addressList.map((address) => {
                                     return (
-                                        <div
+                                        <div key={address._id}
                                             className="accordian-address-item"
                                             onClick={() =>
                                                 setSelectedAddress(address)
@@ -173,7 +176,7 @@ export default function CheckoutPage() {
                                                 {address.pinCode}
                                             </p>
                                             <p className="p-y-0_5">
-                                                <span class="fw-600">
+                                                <span className="fw-600">
                                                     Phone Number:
                                                 </span>{" "}
                                                 {address.phoneNumber}
@@ -249,14 +252,14 @@ export default function CheckoutPage() {
                                             });
                                         }}
                                     >
-                                        <span class="material-icons font-normal">
+                                        <span className="material-icons font-normal">
                                             close
                                         </span>
                                     </button>
                                 </div>
                             )}
                             <button
-                                class="btn btn-primary"
+                                className="btn btn-primary"
                                 onClick={() => {
                                     const resultPrice = applyCoupon(
                                         couponInput,

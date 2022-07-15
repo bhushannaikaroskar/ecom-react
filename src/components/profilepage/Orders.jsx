@@ -43,8 +43,8 @@ export default function Orders() {
         </div>
         <hr />
         <div className="orders-list">
-        {order.list.map((product) => {
-            return <OrderItemCard product={product} />;
+        {order.list.map((order) => {
+            return <OrderItemCard key={order._id} product={order} />;
         })}
         </div>
       </div>

@@ -60,7 +60,7 @@ export default function NavBar() {
 
                     {auth.isAuthenticated && (
                         <div className="account-modal">
-                            <Link class="btn btn-link-secondary" to="/profile"> Profile </Link>
+                            <Link className="btn btn-link-secondary" to="/profile"> Profile </Link>
                             <button className="btn btn-link-secondary font-error" onClick={logout}>
                                 Logout
                             </button>
