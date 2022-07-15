@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { grandLogo } from "../../assets";
 import { useAddress, useAuth, useCartContext, useOrders, useTheme } from "../../context";
 import { errorToast, successToast } from "../../utils";
+import AddressModal from "../profilepage/AddressModal";
 import "./checkout.css";
 import OrderItemCard from "./OrderItemCard";
 
@@ -40,7 +41,7 @@ export default function CheckoutPage() {
     const [coupon, setCoupon] = useState({ couponCode: "", couponDiscount: 0 });
     const [couponInput, setCouponInput] = useState("");
     const [selectedAddress, setSelectedAddress] = useState(null);
-    const { addressList } = useAddress();
+    const { addressList,toggleModal,setIsUpdate } = useAddress();
     const { cart } = useCartContext();
     const { auth } = useAuth();
     const { placeOrders } = useOrders()
@@ -194,7 +195,8 @@ export default function CheckoutPage() {
                             <button
                                 className="btn btn-primary"
                                 onClick={() => {
-                                    navigate("/profile/address");
+                                    setIsUpdate(false)
+                                    toggleModal()
                                 }}
                             >
                                 Add address

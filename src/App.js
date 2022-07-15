@@ -21,6 +21,7 @@ import {
     CheckoutPage,
 } from "./components";
 import ProductDetail from "./components/product-detail-page/ProductDetail";
+import AddressModal from "./components/profilepage/AddressModal";
 
 function App() {
     const location = useLocation();
@@ -50,6 +51,7 @@ function App() {
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
             <ToastContainer position="bottom-right" />
+            <AddressModal/>
             <Footer />
         </div>
     );

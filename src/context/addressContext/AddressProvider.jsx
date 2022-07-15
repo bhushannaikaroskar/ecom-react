@@ -6,10 +6,27 @@ import { useTheme } from "../themeContext/ThemeProvider";
 
 const AddressContext = createContext();
 
+const initialState = {
+    fullName:"",
+    streetAddress:"",
+    city:"",
+    state:"",
+    pinCode:"",
+    phoneNumber:""
+}
+
 export default function AddressProvider({ children }) {
     const [addressList,setAddressList] = useState([])
+    const [isModal, setIsModal] = useState(false);
+    let [isUpdate,setIsUpdate] = useState(false);
+    const [address,setAddress] = useState(initialState);
     const {auth} = useAuth()
     const {theme} = useTheme();
+
+    
+    const toggleModal = () => {
+        setIsModal((s) => !s);
+    };
 
     const addAddress = (address)=>{
         axios.request({
@@ -72,7 +89,7 @@ export default function AddressProvider({ children }) {
     },[auth])
 
     return (
-        <AddressContext.Provider value={{addressList,removeAddress,addAddress,updateAddress}}>{children}</AddressContext.Provider>
+        <AddressContext.Provider value={{addressList,removeAddress,addAddress,updateAddress,isModal,isUpdate,setIsUpdate,toggleModal,address,setAddress}}>{children}</AddressContext.Provider>
     );
 }
 

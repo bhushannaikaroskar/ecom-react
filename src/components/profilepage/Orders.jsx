@@ -10,7 +10,7 @@ export default function Orders() {
     <div className="orders-container">
       <h2>Orders</h2>
         {[...orders].reverse().map((order) => {
-      return <div className="orders-card">
+      return <div key={order._id} className="orders-card">
         <div>
         <div className="order-id-title">Order Placed</div>
         <div className="order-date">Date: {order.createdAt.substring(0,10)}</div>
